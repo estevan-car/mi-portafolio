@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es" class="sin-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estevan Cardona — Desarrollador de software empresarial</title>
+  <meta name="description" content="Desarrollador web enfocado en sistemas de gestión empresarial: ERP, CRM, paneles administrativos y plataformas SaaS. Java, Spring Boot y PostgreSQL.">
+  <meta name="author" content="Estevan Cardona">
+
+  <!-- Open Graph: controla cómo se ve el enlace al compartirlo -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Estevan Cardona — Desarrollador de software empresarial">
+  <meta property="og:description" content="Construyo sistemas que administran negocios: ERP, CRM, paneles administrativos y plataformas SaaS.">
+  <meta property="og:locale" content="es_CO">
+  <!-- TODO: sube una imagen 1200x630 a assets/img/og.jpg y descomenta -->
+  <!-- <meta property="og:image" content="assets/img/og.jpg"> -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#08090B">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/secciones.css">
+</head>
+
+<body id="inicio">
+  <a class="enlace-salto" href="#contenido">Saltar al contenido</a>
+
+  <div class="fondo-resplandor" aria-hidden="true"></div>
+  <div class="fondo-rejilla" aria-hidden="true"></div>
+
+  <!-- ===================== CABECERA ===================== -->
+  <header class="cabecera" data-cabecera>
+    <div class="contenedor cabecera__contenido">
+
+      <a class="cabecera__logo" href="#inicio" aria-label="Volver al inicio">
+        <span class="cabecera__logo-marca">EC</span>
+        <span class="cabecera__logo-punto" aria-hidden="true"></span>
+      </a>
+
+      <nav class="menu" id="menu" data-menu aria-label="Navegación principal">
+        <a href="#sobre-mi"    data-enlace-seccion>Sobre mí</a>
+        <a href="#stack"       data-enlace-seccion>Stack</a>
+        <a href="#proyectos"   data-enlace-seccion>Proyectos</a>
+        <a href="#trayectoria" data-enlace-seccion>Trayectoria</a>
+        <a href="#contacto"    data-enlace-seccion>Contacto</a>
+      </nav>
+
+      <div class="cabecera__acciones">
+        <button class="menu__boton" type="button" data-menu-boton
+                aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ===================== PORTADA ===================== -->
+    <section class="portada" aria-labelledby="titulo-portada">
+      <div class="contenedor portada__contenido">
+
+        <div class="portada__texto">
+          <p class="portada__saludo">Hola, soy</p>
+
+          <h1 class="portada__nombre" id="titulo-portada">
+            Estevan <span class="acento">Cardona.</span>
+          </h1>
+
+          <p class="portada__roles">
+            <span class="portada__roles-fijo" aria-hidden="true">&lt;</span>
+            <span class="portada__rotador" data-rotador>
+              <span class="portada__rol">Sistemas de gestión empresarial</span>
+              <span class="portada__rol">Java &amp; Spring Boot en formación</span>
+              <span class="portada__rol">Rionegro, Colombia</span>
+            </span>
+            <span class="portada__roles-fijo" aria-hidden="true">/&gt;</span>
+          </p>
+
+          <p class="portada__lema">
+            Construyo sistemas que administran negocios, no solo páginas web.
+            Me interesan los procesos que hoy se hacen a mano y que deberían
+            ser software: pedidos, inventarios, cotizaciones, clientes.
+          </p>
+
+          <div class="portada__acciones">
+            <a class="boton boton--principal boton--grande" href="#proyectos">
+              Ver proyectos
+              <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="boton boton--secundario boton--grande" href="#contacto">Hablemos</a>
+          </div>
+
+          <!-- Un conjunto de enlaces es una lista: <ul>, no <div>. -->
+          <ul class="portada__redes" aria-label="Perfiles y contacto">
+            <li>
+              <a href="https://github.com/estevan-car" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg class="icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/miller-steban-cardona-70476b3a6/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg class="icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.71h.05c.53-.95 1.83-1.96 3.77-1.96 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4V9Z"/></svg>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:millerestevanvalenciacardona@gmail.com" aria-label="Enviar un correo">
+                <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Un retrato con su pie es exactamente lo que describe <figure>. -->
+        <figure class="portada__retrato">
+          <div class="retrato">
+            <span class="retrato__resplandor" aria-hidden="true"></span>
+            <span class="retrato__anillo" aria-hidden="true"></span>
+
+            <img class="retrato__imagen" src="assets/img/estevan.jpg"
+                 alt="Retrato de Estevan Cardona" width="400" height="400">
+          </div>
+        </figure>
+
+      </div>
+
+      <a class="portada__bajar" href="#sobre-mi" aria-label="Bajar a sobre mí">
+        <span class="portada__bajar-texto">Scroll</span>
+        <span class="portada__bajar-linea" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- ===================== SOBRE MÍ ===================== -->
+    <section class="seccion" id="sobre-mi" aria-labelledby="titulo-sobre-mi">
+      <div class="contenedor">
+
+        <header class="seccion__encabezado aparece">
+          <p class="seccion__etiqueta">Sobre mí</p>
+          <h2 class="seccion__titulo" id="titulo-sobre-mi">
+            Aprendo construyendo cosas que alguien va a usar
+          </h2>
+          <p class="seccion__intro">
+            No me interesa acumular ejercicios: prefiero desarrollar
+            aplicaciones reales y tropezarme con sus problemas.
+          </p>
+        </header>
+
+        <div class="sobre-mi__rejilla">
+
+          <div class="sobre-mi__texto aparece">
+            <p>
+              Soy Estevan Cardona, desarrollador web en formación con una meta
+              concreta: <strong>Full Stack de software empresarial</strong>. Los
+              sistemas que me interesan son los que reemplazan el cuaderno y el
+              Excel — ERP, CRM, inventarios, paneles administrativos, plataformas SaaS.
+            </p>
+            <p>
+              Cuando construyo algo pienso en el producto completo: cómo lo usa la
+              persona del otro lado, dónde se guardan los datos, qué documentos hay
+              que generar y qué va a pasar cuando haya diez veces más información.
+              No me basta con que funcione; me importa que esté organizado y que
+              se pueda mantener dentro de un año.
+            </p>
+            <p>
+              Evito copiar código que no entiendo. Antes de usar algo quiero saber
+              por qué funciona, cuándo conviene y cuál es la buena práctica detrás.
+              Por eso prefiero construir cada funcionalidad desde cero antes de
+              recurrir a librerías pesadas: entender los fundamentos es lo que
+              después permite elegir bien la herramienta.
+            </p>
+            <p>
+              Ahora mismo estoy en Java y Spring Boot, llevando mis dos proyectos
+              de frontend a sistemas completos con backend real.
+            </p>
+          </div>
+
+          <!-- Pares dato/valor: eso es una lista de definición, <dl>. -->
+          <dl class="sobre-mi__datos aparece">
+            <div class="sobre-mi__dato">
+              <dt>Ubicación</dt>
+              <dd>Rionegro, Antioquia</dd>
+            </div>
+            <div class="sobre-mi__dato">
+              <dt>Enfoque</dt>
+              <dd>Sistemas de gestión</dd>
+            </div>
+            <div class="sobre-mi__dato">
+              <dt>Stack actual</dt>
+              <dd>JavaScript · SQL · Java</dd>
+            </div>
+            <div class="sobre-mi__dato">
+              <dt>Aprendiendo</dt>
+              <dd>Spring Boot</dd>
+            </div>
+            <div class="sobre-mi__dato">
+              <dt>Objetivo</dt>
+              <dd>Full Stack empresarial</dd>
+            </div>
+            <div class="sobre-mi__dato">
+              <dt>Disponibilidad</dt>
+              <dd>Abierto a oportunidades</dd>
+            </div>
+          </dl>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STACK ===================== -->
+    <section class="seccion" id="stack" aria-labelledby="titulo-stack">
+      <div class="contenedor">
+
+        <header class="seccion__encabezado aparece">
+          <p class="seccion__etiqueta">Stack</p>
+          <h2 class="seccion__titulo" id="titulo-stack">
+            Lo que uso, lo que aprendo y hacia dónde voy
+          </h2>
+          <p class="seccion__intro">
+            Tres estados reales en vez de una lista plana. Prefiero declarar qué
+            estoy aprendiendo antes que presentarlo como dominado: es más útil
+            para quien me evalúa y más honesto conmigo.
+          </p>
+        </header>
+
+        <div class="stack__rejilla">
+
+          <!--
+            Cada tarjeta sí es una <section>: agrupa contenido temático y
+            tiene su propio título. Ese es el uso correcto de la etiqueta.
+          -->
+          <section class="tarjeta stack__tarjeta aparece" aria-labelledby="stack-actual">
+            <header class="stack__encabezado">
+              <estado-modulo estado="funcionando"></estado-modulo>
+              <h3 class="stack__titulo" id="stack-actual">Lo que uso hoy</h3>
+            </header>
+            <p class="stack__nota">Con esto construyo hoy, sin ayuda.</p>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Frontend</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">HTML5</li>
+                <li class="etiqueta">CSS3</li>
+                <li class="etiqueta">JavaScript</li>
+                <li class="etiqueta">Responsive</li>
+                <li class="etiqueta">Web Components</li>
+              </ul>
+            </div>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Backend</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">Java</li>
+              </ul>
+            </div>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Herramientas</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">Git</li>
+                <li class="etiqueta">GitHub</li>
+                <li class="etiqueta">VS Code</li>
+                <li class="etiqueta">IntelliJ IDEA</li>
+                <li class="etiqueta">Node.js</li>
+                <li class="etiqueta">npm</li>
+              </ul>
+            </div>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Datos</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">SQL</li>
+                <li class="etiqueta">Modelado de BD</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="tarjeta stack__tarjeta aparece" aria-labelledby="stack-aprendiendo">
+            <header class="stack__encabezado">
+              <estado-modulo estado="desarrollo"></estado-modulo>
+              <h3 class="stack__titulo" id="stack-aprendiendo">Lo que estoy aprendiendo</h3>
+            </header>
+            <p class="stack__nota">En estudio activo, aplicándolo en mis proyectos.</p>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Backend</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">POO</li>
+                <li class="etiqueta">Spring Boot</li>
+                <li class="etiqueta">APIs REST</li>
+              </ul>
+            </div>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Bases de datos</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">PostgreSQL</li>
+                <li class="etiqueta">Diseño relacional</li>
+              </ul>
+            </div>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Infraestructura</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">Docker</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="tarjeta stack__tarjeta aparece" aria-labelledby="stack-objetivo">
+            <header class="stack__encabezado">
+              <estado-modulo estado="planeado"></estado-modulo>
+              <h3 class="stack__titulo" id="stack-objetivo">Hacia dónde voy</h3>
+            </header>
+            <p class="stack__nota">La ruta de los próximos meses.</p>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Seguridad</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">Spring Security</li>
+                <li class="etiqueta">JWT</li>
+              </ul>
+            </div>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Persistencia</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">Hibernate</li>
+                <li class="etiqueta">JPA</li>
+                <li class="etiqueta">Optimización de consultas</li>
+              </ul>
+            </div>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Arquitectura</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">CI/CD</li>
+                <li class="etiqueta">Cloud</li>
+                <li class="etiqueta">Arquitectura de software</li>
+              </ul>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROYECTOS ===================== -->
+    <section class="seccion" id="proyectos" aria-labelledby="titulo-proyectos">
+      <div class="contenedor">
+
+        <header class="seccion__encabezado aparece">
+          <p class="seccion__etiqueta">Proyectos</p>
+          <h2 class="seccion__titulo" id="titulo-proyectos">Lo que estoy construyendo</h2>
+          <p class="seccion__intro">
+            Ambos están en desarrollo activo y lo digo abiertamente: cada módulo
+            muestra su estado real. Despliega la lista para ver qué funciona hoy
+            y qué todavía es plan.
+          </p>
+        </header>
+
+        <!-- role="group" agrupa los botones de filtro y les da un nombre. -->
+        <div class="filtros aparece" data-filtros role="group" aria-label="Filtrar proyectos por tecnología"></div>
+
+        <div class="proyectos__rejilla" data-proyectos>
+          <!-- Lo rellena js/principal.js desde js/datos/proyectos.js -->
+        </div>
+
+        <p class="proyectos__vacio" data-proyectos-vacio hidden>
+          Ningún proyecto usa esa tecnología todavía.
+        </p>
+
+        <div class="proyectos__mas aparece">
+          <a class="boton boton--secundario" href="https://github.com/estevan-car?tab=repositories"
+             target="_blank" rel="noopener noreferrer">
+            Ver todos los repositorios
+            <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== TRAYECTORIA ===================== -->
+    <section class="seccion" id="trayectoria" aria-labelledby="titulo-trayectoria">
+      <div class="contenedor">
+
+        <header class="seccion__encabezado aparece">
+          <p class="seccion__etiqueta">Trayectoria</p>
+          <h2 class="seccion__titulo" id="titulo-trayectoria">Formación y experiencia</h2>
+          <p class="seccion__intro">El camino hasta aquí.</p>
+        </header>
+
+        <!--
+          Una línea de tiempo tiene orden: <ol>, no <ul>. El orden es parte
+          de la información, y el lector de pantalla lo anuncia.
+
+          TODO: ajusta estas entradas con tus fechas, tu institución y tu
+          experiencia real. Las que están aquí son un esqueleto, no datos tuyos.
+        -->
+        <ol class="trayectoria">
+
+          <li class="trayectoria__hito aparece">
+            <span class="trayectoria__marca" aria-hidden="true">
+              <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+            </span>
+            <article class="trayectoria__cuerpo">
+              <p class="trayectoria__datos">
+                <time class="trayectoria__periodo" datetime="2026">2026 — Actualidad</time>
+                <span class="trayectoria__tipo">Proyecto propio</span>
+              </p>
+              <h3 class="trayectoria__titulo">Serena Repostería · VERTRISS Suite</h3>
+              <p class="trayectoria__lugar">Desarrollo independiente</p>
+              <p class="trayectoria__descripcion">
+                Desarrollo de dos sistemas de gestión desde cero: definición del
+                alcance, modelado de datos, interfaz y lógica. En migración hacia
+                un backend en Java con Spring Boot y PostgreSQL.
+              </p>
+            </article>
+          </li>
+
+          <li class="trayectoria__hito aparece">
+            <span class="trayectoria__marca" aria-hidden="true">
+              <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg>
+            </span>
+            <article class="trayectoria__cuerpo">
+              <p class="trayectoria__datos">
+                <time class="trayectoria__periodo" datetime="2026">2026 — Actualidad</time>
+                <span class="trayectoria__tipo">Formación</span>
+              </p>
+              <h3 class="trayectoria__titulo">Análisis y Desarrollo de Software</h3>
+              <p class="trayectoria__lugar">CESDE</p>
+              <p class="trayectoria__descripcion">
+                Formación en programación, desarrollo web, bases de datos relacionales,
+                análisis y diseño de software, control de versiones con Git y GitHub, y
+                metodologías para el desarrollo de aplicaciones. Proyectos prácticos con
+                HTML, CSS, JavaScript, Java, SQL y Spring Boot, aplicando diseño de
+                interfaces, lógica de programación y gestión de bases de datos para
+                construir soluciones funcionales orientadas a necesidades reales.
+              </p>
+            </article>
+          </li>
+
+          <li class="trayectoria__hito aparece">
+            <span class="trayectoria__marca" aria-hidden="true">
+              <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
+            </span>
+            <article class="trayectoria__cuerpo">
+              <p class="trayectoria__datos">
+                <time class="trayectoria__periodo" datetime="2024">2024</time>
+                <span class="trayectoria__tipo">Formación autodidacta</span>
+              </p>
+              <h3 class="trayectoria__titulo">Desarrollo Web y Programación</h3>
+              <p class="trayectoria__lugar">Aprendizaje independiente</p>
+              <p class="trayectoria__descripcion">
+                Inicié mi proceso de aprendizaje de forma autodidacta, estudiando los
+                fundamentos de la programación, HTML, CSS, JavaScript y lógica de
+                programación mediante cursos, documentación oficial y el desarrollo de
+                proyectos personales. Durante esta etapa desarrollé disciplina de
+                aprendizaje, resolución de problemas y buenas prácticas en el
+                desarrollo de software.
+              </p>
+            </article>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACTO ===================== -->
+    <section class="seccion seccion--contacto" id="contacto" aria-labelledby="titulo-contacto">
+      <div class="contenedor">
+        <div class="contacto aparece">
+          <span class="contacto__resplandor" aria-hidden="true"></span>
+
+          <p class="seccion__etiqueta">Contacto</p>
+          <h2 class="contacto__titulo" id="titulo-contacto">Hablemos</h2>
+          <p class="contacto__intro">
+            Busco mi primera oportunidad como desarrollador y proyectos reales
+            donde aplicar lo que construyo. Si tienes un proceso manual que
+            debería ser un sistema, escríbeme.
+          </p>
+
+          <div class="contacto__acciones">
+            <a class="boton boton--principal boton--grande" href="mailto:millerestevanvalenciacardona@gmail.com">
+              <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              Enviar un correo
+            </a>
+            <!-- TODO: pon tu número real o borra este botón -->
+            <a class="boton boton--secundario boton--grande"
+               href="https://wa.me/573113731178?text=Hola%20Estevan%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20contigo."
+               target="_blank" rel="noopener noreferrer">
+              Escribir por WhatsApp
+            </a>
+          </div>
+
+          <dl class="contacto__datos">
+            <div class="contacto__dato">
+              <dt>Email</dt>
+              <dd><a href="mailto:millerestevanvalenciacardona@gmail.com">millerestevanvalenciacardona@gmail.com</a></dd>
+            </div>
+            <div class="contacto__dato">
+              <dt>Ubicación</dt>
+              <dd><a href="#sobre-mi">Rionegro, Antioquia</a></dd>
+            </div>
+          </dl>
+
+          <footer class="contacto__redes">
+            <h3 class="contacto__redes-titulo">También me encuentras en</h3>
+            <ul class="contacto__redes-lista">
+              <li>
+                <a class="enlace" href="https://github.com/estevan-car" target="_blank" rel="noopener noreferrer">
+                  <svg class="icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a class="enlace" href="https://www.linkedin.com/in/miller-steban-cardona-70476b3a6/" target="_blank" rel="noopener noreferrer">
+                  <svg class="icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.71h.05c.53-.95 1.83-1.96 3.77-1.96 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4V9Z"/></svg>
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
+          </footer>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== PIE ===================== -->
+  <footer class="pie">
+    <div class="contenedor pie__contenido">
+
+      <div class="pie__marca">
+        <p class="pie__nombre">Estevan Cardona</p>
+        <p class="pie__derechos">© <span data-anio>2026</span> · Todos los derechos reservados</p>
+      </div>
+
+      <ul class="pie__redes" aria-label="Perfiles y contacto">
+        <li>
+          <a href="https://github.com/estevan-car" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg class="icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/miller-steban-cardona-70476b3a6/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.71h.05c.53-.95 1.83-1.96 3.77-1.96 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4V9Z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="mailto:millerestevanvalenciacardona@gmail.com" aria-label="Correo">
+            <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          </a>
+        </li>
+      </ul>
+
+      <div class="pie__final">
+        <p class="pie__hecho">Sin frameworks · HTML, CSS y JavaScript</p>
+        <a class="pie__arriba" href="#inicio">
+          Volver arriba
+          <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+  <script type="module" src="js/principal.js"></script>
+  <script type="module" src="js/componentes/estado-modulo.js"></script>
+</body>
+</html>

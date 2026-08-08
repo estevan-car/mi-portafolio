@@ -1,0 +1,529 @@
+/* ==========================================================================
+   COMPONENTES — Piezas reutilizables, sin márgenes externos ni posición fija.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CABECERA Y MENÚ
+   -------------------------------------------------------------------------- */
+
+.cabecera {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--alto-cabecera);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s var(--curva), border-color 0.3s var(--curva),
+              backdrop-filter 0.3s var(--curva);
+}
+
+/* Se activa desde JS al pasar la portada: la cabecera solo se
+   "materializa" cuando hay contenido detrás. */
+.cabecera.esta-fija {
+  background: rgba(8, 9, 11, 0.72);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom-color: var(--borde);
+}
+
+.cabecera__contenido {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.cabecera__logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--fuente-mono);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.cabecera__logo-marca {
+  background: linear-gradient(120deg, var(--texto), var(--texto-suave));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cabecera__logo-punto {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--acento);
+  box-shadow: 0 0 12px var(--resplandor);
+}
+
+.cabecera__acciones { display: flex; align-items: center; gap: 0.6rem; }
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+}
+
+.menu a {
+  position: relative;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radio-pastilla);
+  font-size: 0.9rem;
+  color: var(--texto-tenue);
+  transition: color 0.2s var(--curva), background 0.2s var(--curva);
+}
+
+.menu a:hover { color: var(--texto); background: var(--superficie-activa); }
+
+.menu a.es-actual { color: var(--texto); }
+
+.menu a.es-actual::after {
+  content: "";
+  position: absolute;
+  left: 50%; bottom: 0.15rem;
+  width: 14px; height: 2px;
+  border-radius: 2px;
+  background: var(--acento);
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px var(--resplandor);
+}
+
+.menu__boton {
+  display: none;
+  width: 42px; height: 42px;
+  padding: 0;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-chico);
+  background: var(--superficie);
+  place-content: center;
+  gap: 5px;
+}
+
+.menu__boton span {
+  display: block;
+  width: 18px; height: 1.5px;
+  margin-inline: auto;
+  background: var(--texto);
+  border-radius: 2px;
+  transition: transform 0.28s var(--curva), opacity 0.2s var(--curva);
+}
+
+/* Hamburguesa → X. Solo transformamos, sin cambiar el marcado. */
+.menu__boton[aria-expanded="true"] span:first-child  { transform: translateY(3.25px) rotate(45deg); }
+.menu__boton[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu__boton[aria-expanded="true"] span:last-child   { transform: translateY(-3.25px) rotate(-45deg); }
+
+/* --------------------------------------------------------------------------
+   BOTONES Y ENLACES
+   -------------------------------------------------------------------------- */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radio-pastilla);
+  font-family: var(--fuente-titulos);
+  font-size: 0.94rem;
+  font-weight: 600;
+  transition: transform 0.22s var(--curva), box-shadow 0.28s var(--curva),
+              background 0.22s var(--curva), border-color 0.22s var(--curva);
+}
+
+.boton:hover { transform: translateY(-2px); }
+.boton:active { transform: translateY(0); }
+
+.boton .icono { transition: transform 0.25s var(--curva); }
+
+/* Solo el icono final (la flecha) se desplaza: uno inicial se metería
+   dentro del texto. */
+.boton:hover .icono:last-child { transform: translateX(3px); }
+
+.boton--principal {
+  background: linear-gradient(135deg, var(--acento), var(--acento-2));
+  color: var(--acento-tinta);
+  box-shadow: 0 8px 26px -10px var(--resplandor);
+}
+
+.boton--principal:hover { box-shadow: 0 14px 40px -10px var(--resplandor); }
+
+.boton--secundario {
+  border-color: var(--borde-fuerte);
+  background: var(--superficie);
+  color: var(--texto);
+}
+
+.boton--secundario:hover { border-color: var(--acento); background: var(--acento-tenue); }
+
+.boton--grande { padding: 1rem 2rem; font-size: 1.02rem; }
+
+.enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--texto-suave);
+  transition: color 0.2s var(--curva);
+}
+
+.enlace:hover { color: var(--acento); }
+.enlace .icono { font-size: 1.05em; }
+
+/* Enlace que todavía no existe: se ve como texto apagado, no como enlace. */
+.enlace--pendiente { opacity: 0.45; cursor: default; }
+.enlace--pendiente:hover { color: var(--texto-suave); }
+
+/* --------------------------------------------------------------------------
+   ENCABEZADO DE SECCIÓN
+   -------------------------------------------------------------------------- */
+
+.seccion { padding-block: clamp(4.5rem, 11vw, 8rem); }
+
+.seccion__encabezado {
+  max-width: 46rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.seccion__etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-family: var(--fuente-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--acento);
+}
+
+.seccion__etiqueta::before {
+  content: "";
+  width: 24px; height: 1px;
+  background: linear-gradient(90deg, var(--acento), transparent);
+}
+
+.seccion__titulo { font-size: clamp(1.85rem, 4.2vw, 2.85rem); }
+
+.seccion__intro {
+  margin-top: 1.1rem;
+  max-width: 42rem;
+  color: var(--texto-tenue);
+  font-size: 1.03rem;
+}
+
+/* --------------------------------------------------------------------------
+   TARJETA BASE
+   -------------------------------------------------------------------------- */
+
+.tarjeta {
+  position: relative;
+  padding: 1.6rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: linear-gradient(180deg, var(--superficie), rgba(255, 255, 255, 0.012));
+  transition: border-color 0.28s var(--curva), transform 0.28s var(--curva),
+              box-shadow 0.32s var(--curva);
+}
+
+.tarjeta:hover {
+  border-color: var(--borde-fuerte);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 48px -28px rgba(0, 0, 0, 0.9);
+}
+
+/* --------------------------------------------------------------------------
+   ETIQUETAS DE TECNOLOGÍA
+   -------------------------------------------------------------------------- */
+
+.etiquetas { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+
+.etiqueta {
+  padding: 0.32rem 0.72rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pastilla);
+  background: rgba(255, 255, 255, 0.02);
+  font-family: var(--fuente-mono);
+  font-size: 0.76rem;
+  color: var(--texto-suave);
+  transition: border-color 0.2s var(--curva), color 0.2s var(--curva);
+}
+
+.etiqueta:hover { border-color: var(--acento); color: var(--acento); }
+
+.etiquetas--pequenas .etiqueta { font-size: 0.71rem; padding: 0.26rem 0.6rem; }
+
+/* --------------------------------------------------------------------------
+   ESTADO — el vocabulario visual de todo el sitio
+   -------------------------------------------------------------------------- */
+
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--planeado-borde);
+  border-radius: var(--radio-pastilla);
+  background: var(--planeado-fondo);
+  color: var(--planeado);
+  font-family: var(--fuente-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.estado::before {
+  content: "";
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+.estado--funcionando {
+  border-color: var(--funcionando-borde);
+  background: var(--funcionando-fondo);
+  color: var(--funcionando);
+}
+
+/* Solo lo que está vivo late. Si todo se anima, nada destaca. */
+.estado--funcionando::before { animation: latido 2.2s ease-in-out infinite; }
+
+.estado--desarrollo {
+  border-color: var(--desarrollo-borde);
+  background: var(--desarrollo-fondo);
+  color: var(--desarrollo);
+}
+
+.estado--planeado {
+  border-color: var(--planeado-borde);
+  background: var(--planeado-fondo);
+  color: var(--planeado);
+}
+
+@keyframes latido {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 var(--resplandor); }
+  50%      { opacity: 0.6; box-shadow: 0 0 0 5px rgba(47, 214, 155, 0); }
+}
+
+/* --------------------------------------------------------------------------
+   TARJETA DE PROYECTO — la genera <tarjeta-proyecto>
+   -------------------------------------------------------------------------- */
+
+.proyecto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+.proyecto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(24rem 16rem at 100% 0%, rgba(47, 214, 155, 0.10), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s var(--curva);
+  pointer-events: none;
+}
+
+.proyecto:hover::before { opacity: 1; }
+.proyecto:hover { border-color: rgba(47, 214, 155, 0.35); }
+
+/* El contenido debe quedar por encima del resplandor de ::before. */
+.proyecto > * { position: relative; }
+
+.proyecto__encabezado {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.proyecto__dato {
+  font-family: var(--fuente-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  color: var(--texto-tenue);
+}
+
+.proyecto__titulo { font-size: 1.3rem; }
+
+.proyecto__resumen { color: var(--texto-tenue); font-size: 0.95rem; }
+
+.proyecto__puntos {
+  display: grid;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  color: var(--texto-suave);
+}
+
+.proyecto__puntos li { position: relative; padding-left: 1.2rem; }
+
+.proyecto__puntos li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.62em;
+  width: 6px; height: 1px;
+  background: var(--acento);
+}
+
+/* --- Barra de avance --- */
+
+.proyecto__avance { margin-top: 0.35rem; }
+
+.proyecto__avance-datos {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.45rem;
+  font-family: var(--fuente-mono);
+  font-size: 0.72rem;
+  color: var(--texto-tenue);
+}
+
+/* <progress> trae estilos propios de cada navegador. Hay que apagarlos con
+   `appearance:none` y luego pintar el fondo y el relleno por separado, cada
+   uno con su pseudo-elemento. No se pueden agrupar en una sola regla: si un
+   navegador no reconoce un selector, descarta el bloque entero. */
+.proyecto__barra {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 3px;
+  border: none;
+  border-radius: var(--radio-pastilla);
+  background: rgba(255, 255, 255, 0.07);   /* Firefox: fondo de la barra */
+  overflow: hidden;
+}
+
+/* Chrome y Safari: el canal */
+.proyecto__barra::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: var(--radio-pastilla);
+}
+
+/* Chrome y Safari: el relleno */
+.proyecto__barra::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--acento), var(--acento-2));
+  border-radius: var(--radio-pastilla);
+  box-shadow: 0 0 14px -2px var(--resplandor);
+  transition: width 1.1s var(--curva);
+}
+
+/* Firefox: el relleno */
+.proyecto__barra::-moz-progress-bar {
+  background: linear-gradient(90deg, var(--acento), var(--acento-2));
+  border-radius: var(--radio-pastilla);
+  transition: width 1.1s var(--curva);
+}
+
+/* --- Módulos desplegables ---
+   <details> nativo: accesible y funciona aunque falle el JavaScript. */
+
+.proyecto__modulos { border-top: 1px solid var(--borde); padding-top: 0.9rem; }
+
+.proyecto__modulos summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--fuente-mono);
+  font-size: 0.78rem;
+  color: var(--texto-tenue);
+  transition: color 0.2s var(--curva);
+}
+
+.proyecto__modulos summary::-webkit-details-marker { display: none; }
+.proyecto__modulos summary:hover { color: var(--acento); }
+
+.proyecto__modulos summary .icono { transition: transform 0.25s var(--curva); }
+.proyecto__modulos[open] summary .icono { transform: rotate(90deg); }
+
+.lista-modulos { display: grid; gap: 0.1rem; margin-top: 0.9rem; }
+
+.modulo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.modulo:last-child { border-bottom: none; }
+
+.modulo__nombre { font-size: 0.88rem; font-weight: 500; }
+
+.modulo__descripcion {
+  margin-top: 0.15rem;
+  font-size: 0.82rem;
+  color: var(--texto-tenue);
+  max-width: 46ch;
+}
+
+.proyecto__enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.15rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   FILTROS
+   -------------------------------------------------------------------------- */
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.75rem;
+}
+
+.filtro {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pastilla);
+  background: var(--superficie);
+  font-family: var(--fuente-mono);
+  font-size: 0.76rem;
+  color: var(--texto-tenue);
+  transition: color 0.2s var(--curva), border-color 0.2s var(--curva),
+              background 0.2s var(--curva);
+}
+
+.filtro:hover { color: var(--texto); border-color: var(--borde-fuerte); }
+
+.filtro[aria-pressed="true"] {
+  border-color: var(--acento-linea);
+  background: var(--acento-tenue);
+  color: var(--acento);
+}
+
+/* --------------------------------------------------------------------------
+   APARICIÓN AL HACER SCROLL — el retraso escalonado llega en --retraso
+   -------------------------------------------------------------------------- */
+
+.aparece {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--curva) var(--retraso, 0s),
+              transform 0.7s var(--curva) var(--retraso, 0s);
+}
+
+.aparece.es-visible { opacity: 1; transform: none; }
+
+/* Sin JavaScript todo debe verse igual. */
+.sin-js .aparece { opacity: 1; transform: none; }

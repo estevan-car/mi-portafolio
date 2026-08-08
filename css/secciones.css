@@ -1,0 +1,643 @@
+/* ==========================================================================
+   SECCIONES — Layout de cada bloque de la página.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   PORTADA
+   -------------------------------------------------------------------------- */
+
+.portada {
+  position: relative;
+  min-height: 100svh;              /* svh evita el salto con la barra del móvil */
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--alto-cabecera) + 2rem);
+  padding-bottom: 6rem;
+}
+
+.portada__contenido {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 4.5rem);
+}
+
+.portada__texto { min-width: 0; }
+
+.portada__saludo {
+  font-family: var(--fuente-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--acento);
+}
+
+.portada__nombre {
+  margin-top: 0.6rem;
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  background: linear-gradient(150deg, #FFFFFF 18%, #A9B2B9 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.portada__nombre .acento {
+  -webkit-text-fill-color: var(--acento);
+  text-shadow: 0 0 26px var(--resplandor);
+}
+
+/* Rotador de roles: todos los <span> ocupan la misma celda del grid
+   y solo cambia la opacidad. Así no hay saltos de altura. */
+.portada__roles {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  font-family: var(--fuente-mono);
+  font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+  color: var(--texto-suave);
+}
+
+.portada__roles-fijo { color: var(--acento); opacity: 0.65; }
+
+.portada__rotador { display: inline-grid; }
+
+.portada__rol {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(0.45em);
+  transition: opacity 0.45s var(--curva), transform 0.45s var(--curva);
+  white-space: nowrap;
+}
+
+.portada__rol.es-visible { opacity: 1; transform: none; }
+
+.portada__lema {
+  margin-top: 1.6rem;
+  max-width: 34rem;
+  color: var(--texto-tenue);
+  font-size: 1.06rem;
+}
+
+.portada__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2.2rem;
+}
+
+.portada__redes { display: flex; gap: 0.5rem; margin-top: 2.4rem; }
+
+.portada__redes a {
+  display: grid;
+  place-content: center;
+  width: 44px; height: 44px;
+  border: 1px solid var(--borde);
+  border-radius: 50%;
+  background: var(--superficie);
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+  transition: transform 0.22s var(--curva), color 0.22s var(--curva),
+              border-color 0.22s var(--curva), box-shadow 0.28s var(--curva);
+}
+
+.portada__redes a:hover {
+  transform: translateY(-3px);
+  color: var(--acento);
+  border-color: var(--acento);
+  box-shadow: 0 10px 26px -12px var(--resplandor);
+}
+
+.portada__retrato { display: grid; place-items: center; }
+
+/* --- Retrato --- */
+
+.retrato {
+  position: relative;
+  width: min(100%, 24rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.retrato__resplandor {
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, var(--resplandor), transparent 66%);
+  filter: blur(26px);
+  animation: respirar 7s ease-in-out infinite;
+}
+
+/* Anillo giratorio: un degradado cónico recortado con máscara para que
+   solo se vea el borde. Truco de CSS puro, sin imágenes. */
+.retrato__anillo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 1.5px;
+  background: conic-gradient(from 0deg, transparent 8%, var(--acento) 32%,
+                             var(--acento-2) 46%, transparent 68%, transparent 100%);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  animation: girar 14s linear infinite;
+}
+
+.retrato__imagen {
+  position: relative;
+  width: 88%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--borde-fuerte);
+}
+
+/* Marcador mientras no haya foto. Se borra al agregar la imagen. */
+.retrato__marcador {
+  position: relative;
+  width: 88%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  gap: 0.35rem;
+  border: 1px dashed var(--borde-fuerte);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(47, 214, 155, 0.07), transparent 70%),
+    var(--fondo-2);
+}
+
+.retrato__iniciales {
+  font-family: var(--fuente-titulos);
+  font-size: clamp(2.5rem, 7vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  background: linear-gradient(140deg, var(--acento), var(--acento-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+
+.retrato__aviso {
+  font-family: var(--fuente-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+}
+
+@keyframes girar { to { transform: rotate(360deg); } }
+
+@keyframes respirar {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.05); }
+}
+
+.portada__bajar {
+  position: absolute;
+  left: 50%; bottom: 2rem;
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  color: var(--texto-tenue);
+}
+
+.portada__bajar-texto {
+  font-family: var(--fuente-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.portada__bajar-linea {
+  width: 1px; height: 46px;
+  background: linear-gradient(180deg, var(--acento), transparent);
+  animation: caer 2.2s ease-in-out infinite;
+}
+
+@keyframes caer {
+  0%, 100% { transform: scaleY(0.35); transform-origin: top; opacity: 0.4; }
+  50%      { transform: scaleY(1);    transform-origin: top; opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   SOBRE MÍ
+   -------------------------------------------------------------------------- */
+
+.sobre-mi__rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.sobre-mi__texto {
+  display: grid;
+  gap: 1.25rem;
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+}
+
+/* El truco del `gap:1px` sobre un fondo del color del borde crea las
+   separaciones sin declarar un border por fila. */
+.sobre-mi__datos {
+  display: grid;
+  gap: 1px;
+  background: var(--borde);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+
+.sobre-mi__dato {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 1.35rem;
+  background: var(--fondo-2);
+  transition: background 0.22s var(--curva);
+}
+
+.sobre-mi__dato:hover { background: #12151A; }
+
+.sobre-mi__dato dt {
+  font-family: var(--fuente-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+}
+
+.sobre-mi__dato dd {
+  font-family: var(--fuente-titulos);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-align: right;
+}
+
+/* --------------------------------------------------------------------------
+   STACK
+   -------------------------------------------------------------------------- */
+
+.stack__rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.15rem;
+}
+
+.stack__tarjeta:hover { border-color: var(--acento-linea); }
+
+.stack__encabezado {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.15rem;
+}
+
+.stack__titulo { font-size: 1.02rem; font-weight: 600; }
+
+.stack__nota {
+  margin-bottom: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--texto-tenue);
+}
+
+.stack__grupo + .stack__grupo { margin-top: 1.1rem; }
+
+.stack__grupo-titulo {
+  margin-bottom: 0.55rem;
+  font-family: var(--fuente-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+}
+
+/* --------------------------------------------------------------------------
+   PROYECTOS
+   -------------------------------------------------------------------------- */
+
+.proyectos__rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.15rem;
+  align-items: start;
+}
+
+.proyectos__vacio {
+  margin-top: 1.5rem;
+  color: var(--texto-tenue);
+  font-size: 0.95rem;
+}
+
+.proyectos__mas { display: flex; justify-content: center; margin-top: 2.5rem; }
+
+/* --------------------------------------------------------------------------
+   TRAYECTORIA
+   -------------------------------------------------------------------------- */
+
+.trayectoria {
+  position: relative;
+  display: grid;
+  gap: 2.25rem;
+  padding-left: 2.9rem;
+}
+
+.trayectoria::before {
+  content: "";
+  position: absolute;
+  left: 21px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--acento), var(--borde) 55%, transparent);
+}
+
+.trayectoria__hito { position: relative; }
+
+.trayectoria__marca {
+  position: absolute;
+  left: -2.9rem; top: 0;
+  display: grid;
+  place-content: center;
+  width: 44px; height: 44px;
+  border: 1px solid var(--borde);
+  border-radius: 50%;
+  background: var(--fondo-2);
+  color: var(--acento);
+  font-size: 1.05rem;
+}
+
+/* El primero es el actual: se destaca con el resplandor. */
+.trayectoria__hito:first-child .trayectoria__marca {
+  border-color: var(--acento-linea);
+  box-shadow: 0 0 24px -6px var(--resplandor);
+}
+
+.trayectoria__cuerpo { padding: 0.15rem 0 0.25rem; }
+
+.trayectoria__datos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.55rem;
+}
+
+.trayectoria__periodo {
+  font-family: var(--fuente-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--acento);
+}
+
+.trayectoria__tipo {
+  font-family: var(--fuente-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+}
+
+.trayectoria__titulo { font-size: 1.18rem; }
+
+.trayectoria__lugar { margin-top: 0.2rem; font-size: 0.92rem; color: var(--texto-suave); }
+
+.trayectoria__descripcion {
+  margin-top: 0.7rem;
+  max-width: 44rem;
+  font-size: 0.95rem;
+  color: var(--texto-tenue);
+}
+
+/* --------------------------------------------------------------------------
+   CONTACTO
+   -------------------------------------------------------------------------- */
+
+.seccion--contacto { padding-bottom: clamp(3.5rem, 8vw, 6rem); }
+
+.contacto {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding: clamp(2.75rem, 7vw, 4.75rem) clamp(1.5rem, 5vw, 3.5rem);
+  border: 1px solid var(--borde);
+  border-radius: clamp(20px, 3vw, 30px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.008));
+}
+
+.contacto__resplandor {
+  position: absolute;
+  left: 50%; top: -55%;
+  width: min(80%, 40rem);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--resplandor), transparent 62%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.contacto > *:not(.contacto__resplandor) { position: relative; }
+
+.contacto__titulo { margin-top: 0.3rem; font-size: clamp(2rem, 5.5vw, 3.2rem); }
+
+.contacto__intro { margin-top: 1.1rem; max-width: 34rem; color: var(--texto-tenue); }
+
+.contacto__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.contacto__datos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.1rem 2.75rem;
+  margin-top: 1.9rem;
+}
+
+.contacto__dato { display: grid; justify-items: center; gap: 0.3rem; }
+
+.contacto__dato dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--fuente-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+}
+
+.contacto__dato dd a {
+  font-family: var(--fuente-mono);
+  font-size: 0.92rem;
+  color: var(--texto-suave);
+  transition: color 0.2s var(--curva);
+}
+
+.contacto__dato dd a:hover { color: var(--acento); }
+
+.contacto__redes {
+  width: 100%;
+  margin-top: 2.6rem;
+  padding-top: 1.9rem;
+  border-top: 1px solid var(--borde);
+}
+
+.contacto__redes-titulo {
+  margin-bottom: 1rem;
+  font-family: var(--fuente-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+}
+
+.contacto__redes-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   PIE
+   -------------------------------------------------------------------------- */
+
+.pie { border-top: 1px solid var(--borde); padding-block: 2.25rem; }
+
+.pie__contenido {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.pie__marca { display: grid; gap: 0.2rem; }
+
+.pie__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+.pie__derechos,
+.pie__hecho {
+  font-family: var(--fuente-mono);
+  font-size: 0.74rem;
+  color: var(--texto-tenue);
+}
+
+.pie__redes { display: flex; gap: 0.4rem; }
+
+.pie__redes a {
+  display: grid;
+  place-content: center;
+  width: 38px; height: 38px;
+  border: 1px solid var(--borde);
+  border-radius: 50%;
+  color: var(--texto-tenue);
+  transition: color 0.2s var(--curva), border-color 0.2s var(--curva);
+}
+
+.pie__redes a:hover { color: var(--acento); border-color: var(--acento); }
+
+.pie__final { display: grid; justify-items: end; gap: 0.35rem; }
+
+.pie__arriba {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--texto-suave);
+  transition: color 0.2s var(--curva);
+}
+
+.pie__arriba:hover { color: var(--acento); }
+.pie__arriba .icono { transition: transform 0.25s var(--curva); }
+.pie__arriba:hover .icono { transform: translateY(-3px); }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .portada__contenido {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+    gap: 2.5rem;
+  }
+
+  .portada__retrato { order: -1; }
+  .retrato { width: min(100%, 17rem); }
+  .portada__lema, .portada__roles { margin-inline: auto; }
+  .portada__acciones, .portada__redes, .portada__roles { justify-content: center; }
+  .portada__bajar { display: none; }
+
+  .sobre-mi__rejilla { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .menu__boton { display: grid; }
+
+  /* El menú pasa a panel desplegable a pantalla completa. */
+  .menu {
+    position: fixed;
+    inset: var(--alto-cabecera) 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 1rem var(--margen-lateral) 2rem;
+    background: rgba(8, 9, 11, 0.96);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--borde);
+    transform: translateY(-12px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.26s var(--curva), transform 0.26s var(--curva),
+                visibility 0.26s var(--curva);
+  }
+
+  .menu.esta-abierto { opacity: 1; visibility: visible; transform: none; }
+
+  .menu a {
+    padding: 0.95rem 0.25rem;
+    border-radius: 0;
+    border-bottom: 1px solid var(--borde);
+    font-size: 1rem;
+  }
+
+  .menu a.es-actual::after { display: none; }
+
+  .trayectoria { padding-left: 2.4rem; }
+  .trayectoria::before { left: 17px; }
+  .trayectoria__marca { left: -2.4rem; width: 36px; height: 36px; font-size: 0.9rem; }
+
+  .pie__contenido { justify-content: center; text-align: center; }
+  .pie__marca { justify-items: center; }
+  .pie__final { justify-items: center; }
+}
+
+@media (max-width: 480px) {
+  .portada__acciones .boton,
+  .contacto__acciones .boton { width: 100%; }
+  .contacto__datos { gap: 1.1rem 1.5rem; }
+  .sobre-mi__dato { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+  .sobre-mi__dato dd { text-align: left; }
+  .modulo { flex-direction: column; gap: 0.5rem; }
+}

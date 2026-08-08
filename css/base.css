@@ -1,0 +1,179 @@
+/* ==========================================================================
+   BASE — Reset y estilos de elementos HTML. Sin componentes ni secciones.
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--alto-cabecera) + 1.5rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Se aplica al abrir el menú móvil: congela el scroll del fondo. */
+body.sin-scroll { overflow: hidden; }
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+a { color: inherit; text-decoration: none; }
+
+ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
+
+img { display: block; max-width: 100%; height: auto; }
+
+figure { margin: 0; }
+
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+code {
+  font-family: var(--fuente-mono);
+  font-size: 0.9em;
+  color: var(--texto-suave);
+}
+
+::selection { background: var(--acento); color: var(--acento-tinta); }
+
+/* Foco visible solo para teclado, no al hacer clic. */
+:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.acento { color: var(--acento); }
+
+.icono { width: 1em; height: 1em; flex: none; }
+
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+  padding-inline: var(--margen-lateral);
+}
+
+/* --------------------------------------------------------------------------
+   COMPONENTES A MEDIDA
+   Un elemento personalizado es "inline" por defecto. Al declararlo como
+   bloque hay que reponer la regla de [hidden], porque nuestra declaración
+   pisa la del navegador y el filtrado dejaría de ocultar las tarjetas.
+   -------------------------------------------------------------------------- */
+
+tarjeta-proyecto {
+  display: block;
+  min-width: 0;
+}
+
+tarjeta-proyecto[hidden],
+estado-modulo[hidden] { display: none; }
+
+/* --------------------------------------------------------------------------
+   UTILIDADES DE ACCESIBILIDAD
+   -------------------------------------------------------------------------- */
+
+.enlace-salto {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 200;
+  padding: 0.65rem 1.1rem;
+  border-radius: var(--radio-chico);
+  background: var(--acento);
+  color: var(--acento-tinta);
+  font-weight: 600;
+  transform: translateY(-180%);
+  transition: transform 0.25s var(--curva);
+}
+
+.enlace-salto:focus-visible { transform: none; }
+
+/* Visible solo para lectores de pantalla. */
+.solo-lectores {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   FONDO — Dos capas fijas detrás de todo: resplandores y rejilla.
+   `pointer-events:none` es obligatorio o bloquearían los clics.
+   -------------------------------------------------------------------------- */
+
+.fondo-resplandor,
+.fondo-rejilla {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fondo-resplandor {
+  background:
+    radial-gradient(52rem 32rem at 78% -8%,  rgba(47, 214, 155, 0.16), transparent 62%),
+    radial-gradient(44rem 30rem at 6% 12%,   rgba(122, 233, 196, 0.06), transparent 60%),
+    radial-gradient(40rem 34rem at 50% 108%, rgba(47, 214, 155, 0.08), transparent 62%);
+}
+
+.fondo-rejilla {
+  background-image:
+    linear-gradient(to right,  var(--borde) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--borde) 1px, transparent 1px);
+  background-size: 68px 68px;
+  opacity: 0.30;
+  /* La máscara difumina la rejilla hacia los bordes: sin ella se ve
+     como un mantel y satura la pantalla. */
+  mask-image: radial-gradient(70% 55% at 50% 22%, #000 10%, transparent 78%);
+  -webkit-mask-image: radial-gradient(70% 55% at 50% 22%, #000 10%, transparent 78%);
+}
+
+/* El contenido va por encima del fondo. */
+main, .cabecera, .pie { position: relative; z-index: 1; }
+
+/* --------------------------------------------------------------------------
+   PREFERENCIAS DEL SISTEMA
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .aparece { opacity: 1 !important; transform: none !important; }
+}
+
+@media print {
+  .fondo-resplandor,
+  .fondo-rejilla,
+  .cabecera,
+  .portada__bajar,
+  .pie__arriba { display: none; }
+  body { background: #fff; color: #000; }
+}

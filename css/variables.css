@@ -1,0 +1,62 @@
+/* ==========================================================================
+   VARIABLES — Fuente única del sistema visual.
+   Tema: oscuro con acento esmeralda.
+   Ningún otro archivo declara colores literales: todo sale de aquí.
+   ========================================================================== */
+
+:root {
+  /* --- Superficies ------------------------------------------------------- */
+  --fondo:             #08090B;
+  --fondo-2:           #0D0F12;
+  --superficie:        rgba(255, 255, 255, 0.028);
+  --superficie-activa: rgba(255, 255, 255, 0.055);
+  --borde:             rgba(255, 255, 255, 0.085);
+  --borde-fuerte:      rgba(255, 255, 255, 0.16);
+
+  /* --- Texto -------------------------------------------------------------- */
+  --texto:       #ECEFF1;
+  --texto-suave: #B4BCC2;
+  --texto-tenue: #868F97;
+
+  /* --- Acento esmeralda --------------------------------------------------- */
+  --acento:        #2FD69B;
+  --acento-2:      #7AE9C4;
+  --acento-tinta:  #041710;               /* texto sobre fondo de acento */
+  --acento-tenue:  rgba(47, 214, 155, 0.13);
+  --acento-linea:  rgba(47, 214, 155, 0.34);
+  --resplandor:    rgba(47, 214, 155, 0.30);
+
+  /* --- Estados de módulo -------------------------------------------------- */
+  --funcionando:       #2FD69B;
+  --funcionando-fondo: rgba(47, 214, 155, 0.13);
+  --funcionando-borde: rgba(47, 214, 155, 0.32);
+
+  --desarrollo:        #F0B95C;
+  --desarrollo-fondo:  rgba(240, 185, 92, 0.12);
+  --desarrollo-borde:  rgba(240, 185, 92, 0.30);
+
+  --planeado:          #8B94A0;
+  --planeado-fondo:    rgba(255, 255, 255, 0.045);
+  --planeado-borde:    rgba(255, 255, 255, 0.14);
+
+  /* --- Tipografía --------------------------------------------------------- */
+  --fuente-titulos: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --fuente-texto:   "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --fuente-mono:    "JetBrains Mono", "Cascadia Code", ui-monospace, SFMono-Regular, monospace;
+
+  /* --- Medidas ------------------------------------------------------------ */
+  --ancho-max: 1120px;
+  --margen-lateral: clamp(1.25rem, 4vw, 2.5rem);
+  --alto-cabecera: 74px;
+
+  --radio:         18px;
+  --radio-chico:   10px;
+  --radio-pastilla: 999px;
+
+  /* --- Movimiento ---------------------------------------------------------
+     Esta curva (salida rápida, frenado suave) es la que da la sensación
+     "cara" en las transiciones. Una curva lineal delata el prototipo. */
+  --curva: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: dark;
+}
