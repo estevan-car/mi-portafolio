@@ -6,7 +6,7 @@
  */
 
 import { iniciarInterfaz, observarApariciones, animarBarrasAvance, escalonar } from './interfaz.js';
-import { obtenerProyectos, recopilarTecnologias } from './datos/proyectos.js';
+import { obtenerProyectos, categoriasConProyectos, perteneceACategoria, CATEGORIAS } from './datos/proyectos.js';
 import './componentes/tarjeta-proyecto.js';
 
 const TODAS = 'todas';
@@ -35,6 +35,7 @@ async function mostrarProyectos() {
     fragmento.appendChild(tarjeta);
   });
   rejilla.replaceChildren(fragmento);
+  marcarEvidenciaStack(proyectos);
 
   // Las tarjetas nacen después de iniciarInterfaz(), así que se animan aparte.
   escalonar(rejilla, 110);
@@ -44,16 +45,48 @@ async function mostrarProyectos() {
   if (barraFiltros) construirFiltros(barraFiltros, rejilla, proyectos);
 }
 
+/**
+ * Evidencia del stack: a cada etiqueta con data-tecnologia le agrega cuántos
+ * proyectos la usan y cuáles. Así el stack no es una lista de palabras: cada
+ * tecnología queda respaldada por algo construido.
+ * El número sale de los mismos datos que las tarjetas, así que nunca se
+ * desincroniza: agregas un proyecto y los contadores se actualizan solos.
+ */
+function marcarEvidenciaStack(proyectos) {
+  document.querySelectorAll('#stack [data-tecnologia]').forEach((etiqueta) => {
+    const tecnologia = etiqueta.dataset.tecnologia;
+    const nombres = proyectos
+      .filter((proyecto) => proyecto.tecnologias.includes(tecnologia))
+      .map((proyecto) => proyecto.nombre);
+    if (nombres.length === 0) return;
+
+    etiqueta.classList.add('etiqueta--con-uso');
+    etiqueta.title = `Usado en: ${nombres.join(', ')}`;
+
+    // El número es visual; el lector de pantalla recibe la frase completa.
+    const contador = document.createElement('span');
+    contador.className = 'etiqueta__usos';
+    contador.setAttribute('aria-hidden', 'true');
+    contador.textContent = nombres.length;
+
+    const texto = document.createElement('span');
+    texto.className = 'solo-lectores';
+    texto.textContent = `, usado en ${nombres.length} ${nombres.length === 1 ? 'proyecto' : 'proyectos'}`;
+
+    etiqueta.append(contador, texto);
+  });
+}
+
 function construirFiltros(barra, rejilla, proyectos) {
-  const tecnologias = [TODAS, ...recopilarTecnologias(proyectos)];
+  const categorias = [TODAS, ...categoriasConProyectos(proyectos).map((categoria) => categoria.nombre)];
 
   barra.replaceChildren(
-    ...tecnologias.map((tecnologia, indice) => {
+    ...categorias.map((categoria, indice) => {
       const boton = document.createElement('button');
       boton.type = 'button';
       boton.className = 'filtro';
-      boton.textContent = tecnologia === TODAS ? 'Todas' : tecnologia;
-      boton.dataset.tecnologia = tecnologia;
+      boton.textContent = categoria === TODAS ? 'Todos' : categoria;
+      boton.dataset.categoria = categoria;
       boton.setAttribute('aria-pressed', String(indice === 0));
       return boton;
     })
@@ -68,16 +101,17 @@ function construirFiltros(barra, rejilla, proyectos) {
       otro.setAttribute('aria-pressed', String(otro === boton));
     });
 
-    aplicarFiltro(rejilla, boton.dataset.tecnologia);
+    aplicarFiltro(rejilla, boton.dataset.categoria);
   });
 }
 
-function aplicarFiltro(rejilla, tecnologia) {
+function aplicarFiltro(rejilla, nombreCategoria) {
+  const categoria = CATEGORIAS.find((c) => c.nombre === nombreCategoria);
   let visibles = 0;
 
   rejilla.querySelectorAll('tarjeta-proyecto').forEach((tarjeta) => {
     const tecnologiasTarjeta = (tarjeta.dataset.tecnologias || '').split('|');
-    const seMuestra = tecnologia === TODAS || tecnologiasTarjeta.includes(tecnologia);
+    const seMuestra = !categoria || perteneceACategoria(tecnologiasTarjeta, categoria);
     tarjeta.hidden = !seMuestra;
     if (seMuestra) visibles += 1;
   });

@@ -311,6 +311,43 @@
 
 .stack__grupo + .stack__grupo { margin-top: 1.1rem; }
 
+/* Contador de proyectos dentro de la etiqueta del stack. */
+.etiqueta--con-uso {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: help;
+}
+
+.etiqueta__usos {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding-inline: 0.25rem;
+  border-radius: var(--radio-pastilla);
+  background: var(--acento-tenue);
+  color: var(--acento);
+  font-family: var(--fuente-mono);
+  font-size: 0.66rem;
+  line-height: 1;
+}
+
+.stack__leyenda {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.4rem;
+  color: var(--texto-tenue);
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+/* Sin JavaScript no hay contadores: la leyenda sobraría. */
+.sin-js .stack__leyenda { display: none; }
+
 .stack__grupo-titulo {
   margin-bottom: 0.55rem;
   font-family: var(--fuente-mono);
@@ -586,6 +623,10 @@
   .portada__lema, .portada__roles { margin-inline: auto; }
   .portada__acciones, .portada__redes, .portada__roles { justify-content: center; }
   .portada__bajar { display: none; }
+
+  /* Centrado, el rotador mide lo que su frase más larga: los < /> quedaban
+     lejos de las frases cortas. En pantallas angostas se ocultan. */
+  .portada__roles-fijo { display: none; }
 
   .sobre-mi__rejilla { grid-template-columns: 1fr; }
 }

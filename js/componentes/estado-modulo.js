@@ -28,9 +28,9 @@ class EstadoModulo extends HTMLElement {
     this.className = `estado estado--${estado}`;
     this.textContent = etiqueta;
 
-    // Contexto para lectores de pantalla: "Estado: En desarrollo".
-    this.setAttribute('role', 'status');
-    this.setAttribute('aria-label', `Estado: ${etiqueta}`);
+    /* Sin role="status" a propósito: ese rol crea una región "en vivo" que el
+       lector de pantalla anuncia cada vez que cambia. Con unas 40 insignias en
+       la página eso es ruido. El texto visible ("En desarrollo") ya se lee. */
   }
 }
 

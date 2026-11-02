@@ -12,8 +12,11 @@
   <meta property="og:title" content="Estevan Cardona — Desarrollador de software empresarial">
   <meta property="og:description" content="Construyo sistemas que administran negocios: ERP, CRM, paneles administrativos y plataformas SaaS.">
   <meta property="og:locale" content="es_CO">
-  <!-- TODO: sube una imagen 1200x630 a assets/img/og.jpg y descomenta -->
-  <!-- <meta property="og:image" content="assets/img/og.jpg"> -->
+  <!-- Cuando publiques, cambia la ruta por la URL completa
+       (https://tu-dominio/assets/img/og.jpg): WhatsApp y LinkedIn no leen rutas relativas. -->
+  <meta property="og:image" content="assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#08090B">
 
@@ -77,7 +80,7 @@
             <span class="portada__roles-fijo" aria-hidden="true">&lt;</span>
             <span class="portada__rotador" data-rotador>
               <span class="portada__rol">Sistemas de gestión empresarial</span>
-              <span class="portada__rol">Java &amp; Spring Boot en formación</span>
+              <span class="portada__rol">Backend con Java y Spring Boot</span>
               <span class="portada__rol">Rionegro, Colombia</span>
             </span>
             <span class="portada__roles-fijo" aria-hidden="true">/&gt;</span>
@@ -143,11 +146,11 @@
         <header class="seccion__encabezado aparece">
           <p class="seccion__etiqueta">Sobre mí</p>
           <h2 class="seccion__titulo" id="titulo-sobre-mi">
-            Aprendo construyendo cosas que alguien va a usar
+            Aprendo construyendo software que alguien usa de verdad
           </h2>
           <p class="seccion__intro">
-            No me interesa acumular ejercicios: prefiero desarrollar
-            aplicaciones reales y tropezarme con sus problemas.
+            Cada proyecto de este portafolio nació de un problema real: un Excel,
+            un cuaderno o un chat de WhatsApp que ya no daba abasto.
           </p>
         </header>
 
@@ -155,28 +158,25 @@
 
           <div class="sobre-mi__texto aparece">
             <p>
-              Soy Estevan Cardona, desarrollador web en formación con una meta
-              concreta: <strong>Full Stack de software empresarial</strong>. Los
-              sistemas que me interesan son los que reemplazan el cuaderno y el
-              Excel — ERP, CRM, inventarios, paneles administrativos, plataformas SaaS.
+              Soy Estevan Cardona y estudio Análisis y Desarrollo de Software en
+              CESDE. Mi meta es ser <strong>Full Stack de software empresarial</strong>:
+              sistemas de gestión, inventarios y paneles administrativos, los
+              programas que reemplazan el cuaderno y la hoja de cálculo.
             </p>
             <p>
-              Cuando construyo algo pienso en el producto completo: cómo lo usa la
-              persona del otro lado, dónde se guardan los datos, qué documentos hay
-              que generar y qué va a pasar cuando haya diez veces más información.
-              No me basta con que funcione; me importa que esté organizado y que
-              se pueda mantener dentro de un año.
+              Ya tengo trabajo en producción. Una repostería que solo vendía por
+              WhatsApp hoy tiene tienda con carrito, un bot que registra sus pedidos
+              y una herramienta interna para organizar la producción. En mis
+              prácticas en COMFAMA construyo con Java, Spring Boot y PostgreSQL el
+              sistema que reemplaza los formatos de limpieza en Excel, desde el
+              modelo de datos hasta la pantalla del celular.
             </p>
             <p>
-              Evito copiar código que no entiendo. Antes de usar algo quiero saber
-              por qué funciona, cuándo conviene y cuál es la buena práctica detrás.
-              Por eso prefiero construir cada funcionalidad desde cero antes de
-              recurrir a librerías pesadas: entender los fundamentos es lo que
-              después permite elegir bien la herramienta.
-            </p>
-            <p>
-              Ahora mismo estoy en Java y Spring Boot, llevando mis dos proyectos
-              de frontend a sistemas completos con backend real.
+              Me importa lo que pasa después de que algo funciona: que los datos
+              queden bien guardados, que el código se pueda mantener dentro de un
+              año y que la persona que lo usa no necesite un manual. Y no copio
+              código que no entiendo: antes de usar una herramienta quiero saber
+              por qué funciona y cuándo conviene.
             </p>
           </div>
 
@@ -192,7 +192,7 @@
             </div>
             <div class="sobre-mi__dato">
               <dt>Stack actual</dt>
-              <dd>JavaScript · SQL · Java</dd>
+              <dd>Java · JavaScript · SQL</dd>
             </div>
             <div class="sobre-mi__dato">
               <dt>Aprendiendo</dt>
@@ -228,12 +228,13 @@
           </p>
         </header>
 
+        <!--
+          Las etiquetas con data-tecnologia se cruzan con js/datos/proyectos.js:
+          principal.js les agrega cuántos proyectos las usan. Sin JavaScript se
+          ve la lista igual, solo sin el número (mejora progresiva).
+        -->
         <div class="stack__rejilla">
 
-          <!--
-            Cada tarjeta sí es una <section>: agrupa contenido temático y
-            tiene su propio título. Ese es el uso correcto de la etiqueta.
-          -->
           <section class="tarjeta stack__tarjeta aparece" aria-labelledby="stack-actual">
             <header class="stack__encabezado">
               <estado-modulo estado="funcionando"></estado-modulo>
@@ -244,10 +245,9 @@
             <div class="stack__grupo">
               <h4 class="stack__grupo-titulo">Frontend</h4>
               <ul class="etiquetas">
-                <li class="etiqueta">HTML5</li>
-                <li class="etiqueta">CSS3</li>
-                <li class="etiqueta">JavaScript</li>
-                <li class="etiqueta">Responsive</li>
+                <li class="etiqueta" data-tecnologia="HTML5">HTML5</li>
+                <li class="etiqueta" data-tecnologia="CSS3">CSS3</li>
+                <li class="etiqueta" data-tecnologia="JavaScript">JavaScript</li>
                 <li class="etiqueta">Web Components</li>
               </ul>
             </div>
@@ -255,7 +255,30 @@
             <div class="stack__grupo">
               <h4 class="stack__grupo-titulo">Backend</h4>
               <ul class="etiquetas">
-                <li class="etiqueta">Java</li>
+                <li class="etiqueta" data-tecnologia="Java">Java</li>
+                <li class="etiqueta" data-tecnologia="Node.js">Node.js</li>
+                <li class="etiqueta" data-tecnologia="Express">Express</li>
+              </ul>
+            </div>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Datos</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta">SQL</li>
+                <li class="etiqueta" data-tecnologia="Firestore">Firebase</li>
+                <li class="etiqueta" data-tecnologia="Airtable API">Airtable</li>
+              </ul>
+            </div>
+
+            <div class="stack__grupo">
+              <h4 class="stack__grupo-titulo">Infraestructura y despliegue</h4>
+              <ul class="etiquetas">
+                <li class="etiqueta" data-tecnologia="Docker">Docker</li>
+                <li class="etiqueta" data-tecnologia="Google Cloud">Google Cloud</li>
+                <li class="etiqueta" data-tecnologia="n8n">n8n</li>
+                <li class="etiqueta" data-tecnologia="Render">Render</li>
+                <li class="etiqueta">Netlify</li>
+                <li class="etiqueta">Vercel</li>
               </ul>
             </div>
 
@@ -266,16 +289,6 @@
                 <li class="etiqueta">GitHub</li>
                 <li class="etiqueta">VS Code</li>
                 <li class="etiqueta">IntelliJ IDEA</li>
-                <li class="etiqueta">Node.js</li>
-                <li class="etiqueta">npm</li>
-              </ul>
-            </div>
-
-            <div class="stack__grupo">
-              <h4 class="stack__grupo-titulo">Datos</h4>
-              <ul class="etiquetas">
-                <li class="etiqueta">SQL</li>
-                <li class="etiqueta">Modelado de BD</li>
               </ul>
             </div>
           </section>
@@ -290,24 +303,20 @@
             <div class="stack__grupo">
               <h4 class="stack__grupo-titulo">Backend</h4>
               <ul class="etiquetas">
-                <li class="etiqueta">POO</li>
-                <li class="etiqueta">Spring Boot</li>
+                <li class="etiqueta" data-tecnologia="Spring Boot">Spring Boot</li>
+                <li class="etiqueta" data-tecnologia="JPA">JPA / Hibernate</li>
                 <li class="etiqueta">APIs REST</li>
+                <li class="etiqueta" data-tecnologia="Swagger">Swagger</li>
+                <li class="etiqueta">POO</li>
+                <li class="etiqueta">Arquitectura hexagonal</li>
               </ul>
             </div>
 
             <div class="stack__grupo">
               <h4 class="stack__grupo-titulo">Bases de datos</h4>
               <ul class="etiquetas">
-                <li class="etiqueta">PostgreSQL</li>
+                <li class="etiqueta" data-tecnologia="PostgreSQL">PostgreSQL</li>
                 <li class="etiqueta">Diseño relacional</li>
-              </ul>
-            </div>
-
-            <div class="stack__grupo">
-              <h4 class="stack__grupo-titulo">Infraestructura</h4>
-              <ul class="etiquetas">
-                <li class="etiqueta">Docker</li>
               </ul>
             </div>
           </section>
@@ -324,14 +333,14 @@
               <ul class="etiquetas">
                 <li class="etiqueta">Spring Security</li>
                 <li class="etiqueta">JWT</li>
+                <li class="etiqueta">OWASP Top 10</li>
               </ul>
             </div>
 
             <div class="stack__grupo">
-              <h4 class="stack__grupo-titulo">Persistencia</h4>
+              <h4 class="stack__grupo-titulo">Calidad</h4>
               <ul class="etiquetas">
-                <li class="etiqueta">Hibernate</li>
-                <li class="etiqueta">JPA</li>
+                <li class="etiqueta">Pruebas con JUnit</li>
                 <li class="etiqueta">Optimización de consultas</li>
               </ul>
             </div>
@@ -339,14 +348,19 @@
             <div class="stack__grupo">
               <h4 class="stack__grupo-titulo">Arquitectura</h4>
               <ul class="etiquetas">
-                <li class="etiqueta">CI/CD</li>
-                <li class="etiqueta">Cloud</li>
+                <li class="etiqueta">CI/CD con GitHub Actions</li>
                 <li class="etiqueta">Arquitectura de software</li>
               </ul>
             </div>
           </section>
 
         </div>
+
+        <p class="stack__leyenda aparece">
+          <span class="etiqueta__usos" aria-hidden="true">3</span>
+          El número indica en cuántos proyectos de este portafolio lo uso.
+          En computador, pasa el cursor por encima para ver cuáles.
+        </p>
       </div>
     </section>
 
@@ -358,9 +372,9 @@
           <p class="seccion__etiqueta">Proyectos</p>
           <h2 class="seccion__titulo" id="titulo-proyectos">Lo que estoy construyendo</h2>
           <p class="seccion__intro">
-            Ambos están en desarrollo activo y lo digo abiertamente: cada módulo
-            muestra su estado real. Despliega la lista para ver qué funciona hoy
-            y qué todavía es plan.
+            Unos ya están en producción y otros en construcción, y lo digo
+            abiertamente: cada módulo muestra su estado real. Despliega la lista
+            para ver qué funciona hoy y qué todavía es plan.
           </p>
         </header>
 
@@ -400,10 +414,28 @@
           Una línea de tiempo tiene orden: <ol>, no <ul>. El orden es parte
           de la información, y el lector de pantalla lo anuncia.
 
-          TODO: ajusta estas entradas con tus fechas, tu institución y tu
-          experiencia real. Las que están aquí son un esqueleto, no datos tuyos.
         -->
         <ol class="trayectoria">
+
+          <li class="trayectoria__hito aparece">
+            <span class="trayectoria__marca" aria-hidden="true">
+              <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            </span>
+            <article class="trayectoria__cuerpo">
+              <p class="trayectoria__datos">
+                <time class="trayectoria__periodo" datetime="2026">2026 — Actualidad</time>
+                <span class="trayectoria__tipo">Prácticas</span>
+              </p>
+              <h3 class="trayectoria__titulo">Desarrollo de sistemas internos</h3>
+              <p class="trayectoria__lugar">COMFAMA · Rionegro</p>
+              <p class="trayectoria__descripcion">
+                Sistematizo procesos del área de limpieza que hoy se llevan en Excel:
+                un registro diario con fotos y ubicación desde el celular, y una
+                herramienta para programar los turnos del personal. Backend con
+                Spring Boot y PostgreSQL; frontend en JavaScript sin frameworks.
+              </p>
+            </article>
+          </li>
 
           <li class="trayectoria__hito aparece">
             <span class="trayectoria__marca" aria-hidden="true">
@@ -414,12 +446,13 @@
                 <time class="trayectoria__periodo" datetime="2026">2026 — Actualidad</time>
                 <span class="trayectoria__tipo">Proyecto propio</span>
               </p>
-              <h3 class="trayectoria__titulo">Serena Repostería · VERTRISS Suite</h3>
+              <h3 class="trayectoria__titulo">Serena Repostería · VERTRISS</h3>
               <p class="trayectoria__lugar">Desarrollo independiente</p>
               <p class="trayectoria__descripcion">
-                Desarrollo de dos sistemas de gestión desde cero: definición del
-                alcance, modelado de datos, interfaz y lógica. En migración hacia
-                un backend en Java con Spring Boot y PostgreSQL.
+                Software para negocios reales, de la idea a producción: tienda con
+                catálogo y carrito, un bot que registra pedidos desde Telegram, una
+                herramienta interna de producción con Firebase y el sitio de la
+                agencia VERTRISS.
               </p>
             </article>
           </li>
@@ -491,7 +524,6 @@
               <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
               Enviar un correo
             </a>
-            <!-- TODO: pon tu número real o borra este botón -->
             <a class="boton boton--secundario boton--grande"
                href="https://wa.me/573113731178?text=Hola%20Estevan%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20contigo."
                target="_blank" rel="noopener noreferrer">

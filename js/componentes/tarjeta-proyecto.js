@@ -38,6 +38,7 @@ class TarjetaProyecto extends HTMLElement {
        fuera de esta página. `aria-labelledby` le da su nombre accesible. */
     this.innerHTML = `
       <article class="tarjeta proyecto" aria-labelledby="${idTitulo}">
+        ${imagenDelProyecto(proyecto)}
 
         <header class="proyecto__encabezado">
           <p class="proyecto__dato">${escapar(proyecto.anio)}</p>
@@ -99,8 +100,7 @@ class TarjetaProyecto extends HTMLElement {
         </details>
 
         <footer class="proyecto__enlaces">
-          ${enlaceOAviso(proyecto.demo, 'Ver demo', ICONO_EXTERNO)}
-          ${enlaceOAviso(proyecto.repositorio, 'Ver código', ICONO_CODIGO)}
+          ${enlacesDelProyecto(proyecto)}
         </footer>
 
       </article>
@@ -120,6 +120,32 @@ class TarjetaProyecto extends HTMLElement {
 const ICONO_EXTERNO = `<svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>`;
 
 const ICONO_CODIGO = `<svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>`;
+
+const ICONO_CANDADO = `<svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>`;
+
+/**
+ * Captura del proyecto, solo si existe. `loading="lazy"` evita descargarla
+ * hasta que la tarjeta se acerca a la pantalla; width/height reservan el
+ * espacio para que la página no "salte" cuando llega la imagen.
+ */
+function imagenDelProyecto(proyecto) {
+  if (!proyecto.imagen) return '';
+  return `<img class="proyecto__imagen" src="${escapar(proyecto.imagen)}"
+               alt="Captura de ${escapar(proyecto.nombre)}"
+               width="1280" height="800" loading="lazy" decoding="async">`;
+}
+
+/**
+ * Un proyecto interno nunca va a tener demo pública: decir «pronto» sería
+ * prometer algo falso. En ese caso se explica el porqué con `notaEnlaces`.
+ */
+function enlacesDelProyecto(proyecto) {
+  if (!proyecto.demo && !proyecto.repositorio && proyecto.notaEnlaces) {
+    return `<span class="enlace enlace--pendiente">${ICONO_CANDADO}${escapar(proyecto.notaEnlaces)}</span>`;
+  }
+  return enlaceOAviso(proyecto.demo, 'Ver demo', ICONO_EXTERNO) +
+         enlaceOAviso(proyecto.repositorio, 'Ver código', ICONO_CODIGO);
+}
 
 /**
  * Si el enlace todavía no existe, mostramos un aviso en vez de un enlace roto.

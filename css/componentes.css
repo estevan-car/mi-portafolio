@@ -223,8 +223,9 @@
    -------------------------------------------------------------------------- */
 
 .tarjeta {
+  --relleno-tarjeta: 1.6rem;
   position: relative;
-  padding: 1.6rem;
+  padding: var(--relleno-tarjeta);
   border: 1px solid var(--borde);
   border-radius: var(--radio);
   background: linear-gradient(180deg, var(--superficie), rgba(255, 255, 255, 0.012));
@@ -527,3 +528,25 @@
 
 /* Sin JavaScript todo debe verse igual. */
 .sin-js .aparece { opacity: 1; transform: none; }
+
+/* --------------------------------------------------------------------------
+   CAPTURA Y PROYECTO DESTACADO
+   -------------------------------------------------------------------------- */
+
+/* La captura sangra hasta los bordes de la tarjeta: se ve como una ventana
+   del proyecto, no como una foto pegada dentro de una caja. */
+.proyecto__imagen {
+  display: block;
+  width: calc(100% + 2 * var(--relleno-tarjeta));
+  max-width: none;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  margin: calc(-1 * var(--relleno-tarjeta)) calc(-1 * var(--relleno-tarjeta)) 0.2rem;
+  border-bottom: 1px solid var(--borde);
+  background: var(--fondo-2);
+}
+
+/* El proyecto principal se distingue con el borde de acento, sin gritar. */
+tarjeta-proyecto[data-destacado] .proyecto { border-color: var(--acento-linea); }

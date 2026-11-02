@@ -1,110 +1,112 @@
-# Estado del proyecto — 7 de agosto de 2026
+# Estado — 1 de noviembre de 2026
 
-Punto de guardado para retomar el portafolio. Todo lo de aquí está ya aplicado
-en el código; lo que falta está listado abajo.
+## Cambios en el portafolio
 
----
-
-## Dónde va el portafolio
-
-Una sola página, tema oscuro con acento esmeralda (`#2FD69B`), sin frameworks.
-Todo el código en español. Semántica HTML revisada: 96 etiquetas semánticas
-contra 41 `<div>`, y esos son solo envoltorios de rejilla y capas decorativas.
-
-Para verlo: doble clic en `abrir-portafolio.command`.
-
-### Secciones listas
-
-Portada · Sobre mí · Stack · Proyectos · Trayectoria · Contacto
-
-### Proyectos (ambos publicados y enlazados)
-
-| Proyecto | Estado | Avance | Demo | Repositorio |
-|---|---|---|---|---|
-| Serena Repostería | En producción | 50% | estevan-car.github.io/serena | github.com/estevan-car/serena |
-| VERTRISS | En producción | 57% | vertriss.vercel.app | github.com/estevan-car/vertrissv1 |
-
-Los dos se editan desde `js/datos/proyectos.js`. Al cambiar el `estado` de un
-módulo se recalculan solos la insignia, la barra de avance y el contador.
+- Proyectos nuevos: **Registro de limpieza** (COMFAMA, destacado) y
+  **Gestión de turnos** (COMFAMA).
+- Trayectoria con las prácticas en COMFAMA; textos que ya no cuadraban, corregidos.
+- Stack al día: Node/Express y Docker/Google Cloud/n8n pasan a «uso hoy»;
+  JPA, Swagger y arquitectura hexagonal a «aprendiendo».
+- Filtro por 5 categorías en vez de 17 tecnologías sueltas.
+- Las tarjetas aceptan captura (campo `imagen`).
+- Proyectos internos muestran el motivo (candado) en vez de «pronto».
+- Imagen `og.jpg` para compartir, ya creada y activada.
+- Accesibilidad: se quitó `role="status"` de las insignias.
 
 ---
 
-## Lo que quedó pendiente de confirmar
+# Estado anterior — 10 de agosto de 2026
 
-Estas dos cosas las deduje mirando el sitio publicado de Serena. Confírmalas
-o corrígelas en `js/datos/proyectos.js`:
-
-1. **Carrito de pedido.** Vi un contador en la cabecera del sitio, así que lo
-   dejé como `ESTADO.DESARROLLO`. Si el carrito ya cierra el pedido completo,
-   súbelo a `ESTADO.FUNCIONANDO`; si no existe, bájalo a `ESTADO.PLANEADO`.
-
-2. **Historial de pedidos.** Estaba marcado como funcionando pero no aparece en
-   el sitio publicado, así que lo quité de la lista. Si existe en otra rama o en
-   otro repositorio, hay que volver a agregarlo.
+Punto de guardado de los dos proyectos en curso.
 
 ---
 
-## Pendientes para poder publicar
+## 1. Portafolio (esta carpeta)
 
-- [ ] **Trayectoria: tiene datos de relleno.** `AÑO — AÑO`,
-      `NOMBRE DEL PROGRAMA`, `NOMBRE DE LA INSTITUCIÓN` (líneas ~446-450 de
-      `index.html`). Esto es lo más urgente: no puede salir así.
-- [ ] **LinkedIn:** reemplazar `TU-PERFIL` en `index.html` (aparece 4 veces).
-- [ ] **WhatsApp:** reemplazar `57TUNUMERO`, o borrar ese botón (línea ~501).
-- [ ] **Foto:** guardarla en `assets/img/estevan.jpg` (cuadrada, mínimo
-      800×800), descomentar el `<img class="retrato__imagen">` y borrar el
-      bloque `.retrato__marcador`.
-- [ ] **Imagen para compartir:** `assets/img/og.jpg` (1200×630) y descomentar
-      el `<meta property="og:image">`.
+Una sola página, tema oscuro con acento esmeralda, sin frameworks, todo el
+código en español. Para verlo: doble clic en `abrir-portafolio.command`.
 
-Ya está resuelto: usuario de GitHub (`estevan-car`), ubicación
-(Rionegro, Antioquia), enlaces de demo y repositorio de los dos proyectos.
+**Ya resuelto:** foto de perfil, LinkedIn, usuario de GitHub, ubicación
+(Rionegro, Antioquia), enlaces de demo y repositorio de los dos proyectos,
+y la sección Trayectoria con datos reales.
 
----
+**Único pendiente:** la imagen para compartir en redes.
+Sube `assets/img/og.jpg` (1200×630) y descomenta la línea
+`<meta property="og:image">` en el `index.html` (línea 16).
 
-## Idea propuesta que quedó sin aplicar
+Sin eso, cuando alguien comparta tu portafolio por WhatsApp o LinkedIn no
+aparece imagen de vista previa.
 
-El pie de la página de Serena dice **«Diseñado y desarrollado por VERTRISS»**.
-Es decir, Serena no es un proyecto personal: es un cliente de tu propia agencia.
+### Proyectos que muestra
 
-Esa historia — *monté una agencia y estos son mis clientes* — pesa mucho más
-que «hice dos proyectos». Falta reflejarla en:
+| Proyecto | Estado | Avance |
+|---|---|---|
+| Serena Repostería | En producción | 50% |
+| VERTRISS | En producción | 57% |
 
-- La sección **Sobre mí**, que hoy no menciona VERTRISS como agencia.
-- La **Trayectoria**, donde la primera entrada podría ser la fundación de
-  VERTRISS en lugar de «Desarrollo independiente».
+Se editan desde `js/datos/proyectos.js`. Al cambiar el `estado` de un módulo
+se recalculan solos la insignia, la barra de avance y el contador.
 
 ---
 
-## Por dónde seguir mañana
+## 2. Bot de pedidos de Serena
 
-1. Llenar la Trayectoria con datos reales (lo más urgente).
-2. Confirmar los dos módulos de Serena.
-3. Decidir si incorporamos la historia de VERTRISS como agencia.
-4. Foto y datos de contacto que falten.
-5. Publicar en GitHub Pages o Netlify (instrucciones en el `README.md`).
+**Carpeta: `Documentos/bot-serena-v2`** ← esta es la versión buena.
+Funcionando en producción sobre Render + Airtable.
+
+Reenvías al bot el mensaje de la clienta tal como llega —con emojis, fechas
+en español y todo— y lo guarda en Airtable con vista de calendario.
+
+### Lo que se arregló
+
+Fallos reales encontrados en pedidos ya guardados:
+
+- El **nombre de la clienta se perdía**: el bot buscaba `Cliente` y ellas
+  escriben `Nombre completo`.
+- El **teléfono perdía el indicativo**: de `304 6653074` guardaba `6653074`.
+  Ese número no sirve para llamar.
+- El **tamaño de la torta iba a la columna Cantidad**.
+- Los **errores no se veían**: cualquier fallo de Airtable se tragaba en
+  silencio y el bot no respondía. Por eso parecía roto.
+- Los **pedidos se podían duplicar** cuando Render estaba dormido.
+- **`Valor total: $39.000 con abono de $20.000`** se convertía en
+  $3.900.020.000, porque pegaba todos los dígitos de la línea.
+- **Responder "No" a "¿recoges?"** dejaba la entrega vacía.
+
+### Lo que hace ahora
+
+- Resumen de confirmación con la misma estructura del formulario, para
+  compararlo línea por línea.
+- Verifica el saldo: si el del mensaje no cuadra con `total − abono`, avisa.
+- Rescata la dirección aunque venga pegada en la respuesta.
+- `/revisar` comprueba Airtable y dice qué columnas faltan.
+
+### Estructura
+
+`pedido.js` traduce el mensaje a datos y no sabe nada de Telegram ni de
+Airtable. `server.js` solo habla con los dos servicios. Por eso la parte
+difícil se pudo probar aislada — y si algún día los pedidos llegan por
+WhatsApp o por un formulario web, `pedido.js` se reutiliza tal cual.
+
+### Ojo con esto
+
+- **La prueba de Airtable se vence pronto.** Mira qué pasa con la base y con
+  el plan gratuito antes de que expire.
+- **Registro viejo:** el primer pedido de Krisdayana quedó sin nombre y con
+  el teléfono cortado. Bórralo o corrígelo a mano.
+- **Seguridad opcional:** sin `TELEGRAM_WEBHOOK_SECRET`, cualquiera que
+  conozca la URL de Render puede insertar pedidos falsos. Está explicado en
+  el `env-ejemplo.txt` de la carpeta del bot.
+- La carpeta `pedidos-bot-listo` quedó obsoleta; se puede borrar.
 
 ---
 
-## Archivos del proyecto
+## Por dónde seguir
 
-```
-portafolio-estevan/
-├── index.html                    Toda la página
-├── abrir-portafolio.command      Arranca el servidor local (doble clic)
-├── README.md                     Documentación técnica y decisiones
-├── ESTADO.md                     Este archivo
-├── css/
-│   ├── variables.css             Colores, tipografías, medidas
-│   ├── base.css                  Reset y capas de fondo
-│   ├── componentes.css           Cabecera, botones, tarjetas, estados
-│   └── secciones.css             Layout de cada bloque
-├── js/
-│   ├── datos/proyectos.js        Fuente única de datos
-│   ├── componentes/
-│   │   ├── tarjeta-proyecto.js
-│   │   └── estado-modulo.js
-│   ├── interfaz.js               Menú, apariciones, sección activa
-│   └── principal.js              Punto de entrada
-└── assets/img/                   (vacía: falta la foto)
-```
+1. **Imagen `og.jpg`** para el portafolio (lo único que falta ahí).
+2. **Agregar el bot como tercer proyecto del portafolio.** Automatiza un
+   proceso manual real, está en producción y tiene una buena historia de
+   depuración que contar — encaja exactamente con el perfil de «sistemas de
+   gestión» que declara el portafolio.
+3. Publicar el portafolio en GitHub Pages o Netlify (instrucciones en el
+   `README.md`).

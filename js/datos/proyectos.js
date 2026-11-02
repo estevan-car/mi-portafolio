@@ -30,12 +30,49 @@ export const ETIQUETA_ESTADO = Object.freeze({
 
 const PROYECTOS = [
   {
+    id: 'registro-limpieza',
+    nombre: 'Registro de limpieza',
+    tipo: 'Prácticas · COMFAMA',
+    estado: ESTADO.DESARROLLO,
+    anio: '2026',
+    destacado: true,
+    imagen: '',        // Captura opcional: 'assets/img/proyectos/registro-limpieza.webp'
+    demo: '',
+    repositorio: '',
+    notaEnlaces: 'Sistema interno de COMFAMA: sin demo pública',
+
+    resumen:
+      'El registro de limpieza de las sedes se llevaba a mano en un Excel de ocho hojas, ' +
+      'una por tipo de espacio. Lo estoy convirtiendo en un sistema: el personal registra ' +
+      'desde el celular, con fotos de antes y después y ubicación, y todo queda en PostgreSQL.',
+
+    puntosClave: [
+      'API REST con Spring Boot, Java 21, JPA y PostgreSQL, documentada con Swagger',
+      'Reglas de negocio en el backend: cada actividad solo se acepta en el tipo de espacio que le corresponde',
+      'Registro multipart con fotos de antes y después obligatorias, guardadas con nombre UUID',
+    ],
+
+    tecnologias: ['Java', 'Spring Boot', 'JPA', 'PostgreSQL', 'Swagger', 'JavaScript'],
+
+    modulos: [
+      { nombre: 'Interfaz para celular',          estado: ESTADO.FUNCIONANDO, descripcion: 'Validación de campos, ubicación GPS con mapa, captura de fotos y pestañas por tipo de espacio.' },
+      { nombre: 'Sedes y espacios',               estado: ESTADO.FUNCIONANDO, descripcion: 'Endpoints para crear y consultar sedes con sus espacios por tipo.' },
+      { nombre: 'Catálogo de actividades',        estado: ESTADO.FUNCIONANDO, descripcion: 'Las 75 actividades reales de los formatos, ligadas a su tipo de espacio.' },
+      { nombre: 'Registro diario',                estado: ESTADO.FUNCIONANDO, descripcion: 'Guarda el registro con sus actividades y el tipo de limpieza del día (profunda, rutina o evento).' },
+      { nombre: 'Fotos de antes y después',       estado: ESTADO.FUNCIONANDO, descripcion: 'Petición multipart que recibe el registro en JSON y las dos fotos.' },
+      { nombre: 'Consulta de registros y fotos',  estado: ESTADO.DESARROLLO,  descripcion: 'Listar los registros guardados y servir sus fotos.' },
+      { nombre: 'Conexión frontend–backend',      estado: ESTADO.PLANEADO,    descripcion: 'Un solo archivo (api.js) habla con la API; sin URL configurada, la interfaz funciona en modo demo.' },
+      { nombre: 'Autenticación y seguridad',      estado: ESTADO.PLANEADO,    descripcion: 'Inicio de sesión y credenciales de la base fuera del código.' },
+    ],
+  },
+
+  {
     id: 'serena',
     nombre: 'Serena Repostería',
     tipo: 'Cliente real · En producción',
     estado: ESTADO.FUNCIONANDO,
     anio: '2026',
-    destacado: true,
+    destacado: false,
     demo: 'https://serenapastelapp.netlify.app/',
     repositorio: 'https://github.com/estevan-car/serena',
 
@@ -65,35 +102,38 @@ const PROYECTOS = [
   },
 
   {
-    id: 'vertriss',
-    nombre: 'VERTRISS',
-    tipo: 'Sitio de agencia · En producción',
+    id: 'bot-pedidos',
+    nombre: 'Bot de pedidos',
+    tipo: 'Automatización · En producción',
     estado: ESTADO.FUNCIONANDO,
     anio: '2026',
     destacado: false,
-    demo: 'https://vertriss.vercel.app/',
-    repositorio: 'https://github.com/estevan-car/vertrissv1',
+    demo: '',          // El bot escribe en la base real de un cliente: no se publica
+    repositorio: '',   // TODO: ponlo aquí si haces público el repositorio
+    notaEnlaces: 'Trabaja sobre la base real de un cliente: sin demo pública',
 
     resumen:
-      'VERTRISS necesitaba su propio sitio para captar clientes y mostrar su trabajo. ' +
-      'Lo construí desde cero, sin plantillas, y hoy está publicado y recibiendo solicitudes.',
+      'Serena recibía los pedidos por WhatsApp y los copiaba a mano, uno por uno. ' +
+      'Ahora reenvía el mensaje de la clienta a un bot de Telegram y queda registrado ' +
+      'en un calendario de producción, sin volver a escribir nada.',
 
     puntosClave: [
-      'Formulario de contacto con EmailJS y validación en tiempo real',
-      'SEO técnico: Open Graph, sitemap.xml, robots.txt y datos estructurados',
-      'Imágenes en WebP y carga optimizada para puntuar bien en rendimiento',
+      'Lee el mensaje tal como lo escribe la clienta: emojis, etiquetas libres y fechas en español',
+      'Verifica las cuentas y avisa cuando el saldo del mensaje no cuadra con la resta',
+      'Diagnóstico integrado que distingue si el fallo es del token, la tabla o una columna',
     ],
 
-    tecnologias: ['HTML5', 'CSS3', 'JavaScript', 'EmailJS', 'SEO'],
+    tecnologias: ['Node.js', 'Express', 'Telegram API', 'Airtable API', 'Render'],
     stackObjetivo: ['Java', 'Spring Boot', 'PostgreSQL'],
 
     modulos: [
-      { nombre: 'Landing page responsive',     estado: ESTADO.FUNCIONANDO, descripcion: 'Servicios, proceso de trabajo, portafolio y contacto en una sola página.' },
-      { nombre: 'Formulario con EmailJS',      estado: ESTADO.FUNCIONANDO, descripcion: 'Envío de solicitudes al correo sin necesidad de servidor propio.' },
-      { nombre: 'Validación en tiempo real',   estado: ESTADO.FUNCIONANDO, descripcion: 'Revisión de los campos mientras se escriben, con avisos claros.' },
-      { nombre: 'SEO técnico',                 estado: ESTADO.FUNCIONANDO, descripcion: 'Metadatos, sitemap, robots.txt y marcado Schema.org.' },
-      { nombre: 'Panel administrativo',        estado: ESTADO.PLANEADO,    descripcion: 'Gestionar solicitudes y contenido sin tocar el código.' },
-      { nombre: 'Blog corporativo',            estado: ESTADO.PLANEADO,    descripcion: 'Publicaciones propias para atraer tráfico orgánico.' },
+      { nombre: 'Lectura del mensaje',        estado: ESTADO.FUNCIONANDO, descripcion: 'Interpreta el formato libre de las clientas y lo convierte en datos estructurados.' },
+      { nombre: 'Registro en calendario',     estado: ESTADO.FUNCIONANDO, descripcion: 'Cada pedido queda en una vista de calendario por fecha de entrega.' },
+      { nombre: 'Cálculo de saldos',          estado: ESTADO.FUNCIONANDO, descripcion: 'Total, abono y saldo, con aviso cuando las cifras no cuadran.' },
+      { nombre: 'Diagnóstico /revisar',       estado: ESTADO.FUNCIONANDO, descripcion: 'Comando que comprueba la conexión y señala qué columna falta.' },
+      { nombre: 'Control de duplicados',      estado: ESTADO.FUNCIONANDO, descripcion: 'Descarta los reintentos del servidor para no crear el pedido dos veces.' },
+      { nombre: 'Firma del webhook',          estado: ESTADO.PLANEADO,    descripcion: 'Rechazar cualquier petición que no venga firmada por Telegram.' },
+      { nombre: 'Ficha de producción diaria', estado: ESTADO.PLANEADO,    descripcion: 'Agrupar los pedidos del día en una hoja de trabajo para cocina.' },
     ],
   },
 
@@ -132,34 +172,71 @@ const PROYECTOS = [
   },
 
   {
-    id: 'bienes-raices',
-    nombre: 'Bienes Raíces',
-    tipo: 'Proyecto de práctica · Frontend',
+    id: 'vertriss',
+    nombre: 'VERTRISS',
+    tipo: 'Sitio de agencia · En producción',
     estado: ESTADO.FUNCIONANDO,
     anio: '2026',
     destacado: false,
-    demo: 'https://estevan-car.github.io/bienes-raices/',
-    repositorio: 'https://github.com/estevan-car/bienes-raices',
+    demo: 'https://vertriss.vercel.app/',
+    repositorio: 'https://github.com/estevan-car/vertrissv1',
 
     resumen:
-      'Sitio de práctica para una inmobiliaria: seis páginas (inicio, nosotros, anuncios, ' +
-      'detalle de anuncio, blog y contacto) enfocadas en maquetación y diseño responsive ' +
-      'desde cero, con el modelo de datos ya pensado para conectar un backend real.',
+      'VERTRISS necesitaba su propio sitio para captar clientes y mostrar su trabajo. ' +
+      'Lo construí desde cero, sin plantillas, y hoy está publicado y recibiendo solicitudes.',
 
     puntosClave: [
-      'Seis páginas enlazadas, maquetadas y hechas responsive sin frameworks de CSS',
-      'Esquema SQL ya definido para guardar los contactos del formulario',
-      'Base para practicar la conexión de un formulario a una API real',
+      'Formulario de contacto con EmailJS y validación en tiempo real',
+      'SEO técnico: Open Graph, sitemap.xml, robots.txt y datos estructurados',
+      'Imágenes en WebP y carga optimizada para puntuar bien en rendimiento',
     ],
 
-    tecnologias: ['HTML5', 'CSS3'],
-    stackObjetivo: ['PostgreSQL'],
+    tecnologias: ['HTML5', 'CSS3', 'JavaScript', 'EmailJS', 'SEO'],
+    stackObjetivo: ['Java', 'Spring Boot', 'PostgreSQL'],
 
     modulos: [
-      { nombre: 'Páginas del sitio',         estado: ESTADO.FUNCIONANDO, descripcion: 'Inicio, Nosotros, Anuncios, detalle de anuncio, Blog y Contacto, enlazadas entre sí.' },
-      { nombre: 'Diseño responsive',         estado: ESTADO.FUNCIONANDO, descripcion: 'Maquetación adaptada a distintos anchos de pantalla.' },
-      { nombre: 'Formulario de contacto',    estado: ESTADO.DESARROLLO,  descripcion: 'El formulario existe en la interfaz, pero todavía no envía los datos a ningún lado.' },
-      { nombre: 'Persistencia en base de datos', estado: ESTADO.PLANEADO, descripcion: 'Ya existe el esquema SQL (PostgreSQL) para guardar los contactos; falta conectar el formulario a una API real.' },
+      { nombre: 'Landing page responsive',     estado: ESTADO.FUNCIONANDO, descripcion: 'Servicios, proceso de trabajo, portafolio y contacto en una sola página.' },
+      { nombre: 'Formulario con EmailJS',      estado: ESTADO.FUNCIONANDO, descripcion: 'Envío de solicitudes al correo sin necesidad de servidor propio.' },
+      { nombre: 'Validación en tiempo real',   estado: ESTADO.FUNCIONANDO, descripcion: 'Revisión de los campos mientras se escriben, con avisos claros.' },
+      { nombre: 'SEO técnico',                 estado: ESTADO.FUNCIONANDO, descripcion: 'Metadatos, sitemap, robots.txt y marcado Schema.org.' },
+      { nombre: 'Panel administrativo',        estado: ESTADO.PLANEADO,    descripcion: 'Gestionar solicitudes y contenido sin tocar el código.' },
+      { nombre: 'Blog corporativo',            estado: ESTADO.PLANEADO,    descripcion: 'Publicaciones propias para atraer tráfico orgánico.' },
+    ],
+  },
+
+  {
+    id: 'gestion-turnos',
+    nombre: 'Gestión de turnos',
+    tipo: 'Prácticas · COMFAMA',
+    estado: ESTADO.DESARROLLO,
+    anio: '2026',
+    destacado: false,
+    imagen: '',
+    demo: '',
+    repositorio: '',
+    notaEnlaces: 'Sistema interno de COMFAMA: sin demo pública',
+
+    resumen:
+      'La programación semanal del personal de limpieza (45 personas repartidas en más de ' +
+      'veinte puestos por zonas) se arma a mano, sin validar choques ni horas. Estoy ' +
+      'construyendo un calendario visual que calcula las horas solo y muestra qué puestos quedan sin cubrir.',
+
+    puntosClave: [
+      'Calendario semanal como tabla semántica, con la columna de nombres fija al desplazar',
+      'Horas trabajadas calculadas solas: fin − inicio − 30 minutos de almuerzo',
+      'Validaciones planeadas: puesto ya ocupado y tope de horas semanales por persona',
+    ],
+
+    tecnologias: ['HTML5', 'CSS3', 'JavaScript'],
+    stackObjetivo: ['Java', 'Spring Boot', 'PostgreSQL'],
+
+    modulos: [
+      { nombre: 'Calendario semanal',            estado: ESTADO.FUNCIONANDO, descripcion: 'Maqueta de la semana con turnos de mañana y tarde.' },
+      { nombre: 'Zonas, puestos y tipos de día', estado: ESTADO.DESARROLLO,  descripcion: 'Puestos agrupados por zona; cada día es turno, descanso o ausencia.' },
+      { nombre: 'Cálculo de horas',              estado: ESTADO.DESARROLLO,  descripcion: 'Horas por turno a partir del horario escrito en cada asignación.' },
+      { nombre: 'Asignación y cobertura',        estado: ESTADO.PLANEADO,    descripcion: 'Asignar con un clic y ver cada día cuántos puestos están cubiertos y cuáles faltan.' },
+      { nombre: 'Arrastrar turnos con validación', estado: ESTADO.PLANEADO,  descripcion: 'Mover turnos sin duplicar puestos ni pasar el tope de horas.' },
+      { nombre: 'Backend con Spring Boot',       estado: ESTADO.PLANEADO,    descripcion: 'Personas, puestos y asignaciones guardados en PostgreSQL.' },
     ],
   },
 ];
@@ -196,7 +273,27 @@ export function contarModulosPorEstado(proyecto, estado) {
   return (proyecto.modulos ?? []).filter((modulo) => modulo.estado === estado).length;
 }
 
-/** Lista única de tecnologías de todos los proyectos (para los filtros). */
-export function recopilarTecnologias(proyectos) {
-  return [...new Set(proyectos.flatMap((proyecto) => proyecto.tecnologias))].sort();
+/**
+ * Categorías del filtro. Filtrar por cada tecnología suelta daba 20 botones
+ * ("JSON", "WebP"...) que no le sirven a nadie. Una categoría agrupa varias
+ * tecnologías: un proyecto aparece si usa al menos una de ellas.
+ */
+export const CATEGORIAS = Object.freeze([
+  { nombre: 'Java y Spring Boot', tecnologias: ['Java', 'Spring Boot', 'JPA'] },
+  { nombre: 'JavaScript',         tecnologias: ['JavaScript', 'Node.js', 'Express'] },
+  { nombre: 'Bases de datos',     tecnologias: ['PostgreSQL', 'Firestore', 'Airtable API', 'SQL'] },
+  { nombre: 'Automatización',     tecnologias: ['n8n', 'Telegram API', 'Gemini'] },
+  { nombre: 'Infraestructura',    tecnologias: ['Docker', 'Google Cloud', 'Caddy', 'Render'] },
+]);
+
+/** ¿El proyecto usa alguna tecnología de la categoría? */
+export function perteneceACategoria(tecnologiasProyecto, categoria) {
+  return tecnologiasProyecto.some((tecnologia) => categoria.tecnologias.includes(tecnologia));
+}
+
+/** Solo las categorías que tienen al menos un proyecto: nunca un filtro vacío. */
+export function categoriasConProyectos(proyectos) {
+  return CATEGORIAS.filter((categoria) =>
+    proyectos.some((proyecto) => perteneceACategoria(proyecto.tecnologias, categoria))
+  );
 }

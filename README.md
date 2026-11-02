@@ -96,23 +96,15 @@ término que se ve en pantalla y el que se usa en el sector. Las APIs del
 navegador (`querySelector`, `addEventListener`, `innerHTML`...) las define el
 estándar web y no se pueden traducir.
 
-## Antes de publicar
+## Pendiente
 
-Busca `TODO` en el código. Falta:
-
-- [ ] Tu foto en `assets/img/estevan.jpg` (cuadrada, mínimo 800×800). Después
-      descomenta el `<img class="retrato__imagen">` y borra el bloque
-      `.retrato__marcador` en `index.html`.
-- [ ] Usuario de GitHub: reemplaza `TU-USUARIO` (4 veces).
-- [ ] URL de LinkedIn: reemplaza `TU-PERFIL` (3 veces).
-- [ ] Número de WhatsApp: reemplaza `57TUNUMERO`, o borra ese botón.
-- [ ] Tu ciudad, en la ficha de «Sobre mí».
-- [ ] **La sección Trayectoria está con datos de relleno.** Pon tus fechas,
-      tu institución y tu formación real.
-- [ ] Enlaces de demo y repositorio, en `js/datos/proyectos.js`. Mientras estén
-      vacíos aparecen como «pronto» en vez de enlaces rotos.
-- [ ] Imagen para compartir: `assets/img/og.jpg` (1200×630) y descomenta el
-      `<meta property="og:image">`.
+- [ ] **Capturas de los proyectos.** Guárdalas en `assets/img/proyectos/`
+      (1280×800, en `.webp`) y pon la ruta en el campo `imagen` de cada
+      proyecto en `js/datos/proyectos.js`. Sin `imagen`, la tarjeta sale sin foto.
+- [ ] **og:image con URL completa.** Al publicar, cambia `assets/img/og.jpg`
+      por `https://tu-dominio/assets/img/og.jpg` en el `index.html`.
+- [ ] **CV en PDF** para descargar desde la portada.
+- [ ] Repositorio público de los proyectos que lo permitan.
 
 ## Actualizar el portafolio
 
@@ -121,7 +113,15 @@ a `ESTADO.FUNCIONANDO`, `ESTADO.DESARROLLO` o `ESTADO.PLANEADO`. Todo lo demás
 se recalcula.
 
 **Agregar un proyecto:** añade un objeto al array `PROYECTOS` con la misma
-estructura. La tarjeta y su filtro aparecen automáticamente.
+estructura. La tarjeta aparece sola.
+
+**Proyectos sin demo pública** (internos o de un cliente): deja `demo` y
+`repositorio` vacíos y escribe el motivo en `notaEnlaces`. Se muestra con un
+candado en vez de «pronto».
+
+**Filtros:** son categorías, no tecnologías sueltas. Se definen en
+`CATEGORIAS` (en `proyectos.js`); una categoría solo aparece si algún
+proyecto usa alguna de sus tecnologías.
 
 **Cambiar el color de acento:** edita `--acento` y `--acento-2` en
 `css/variables.css`. Si eliges un color claro, ajusta también `--acento-tinta`
